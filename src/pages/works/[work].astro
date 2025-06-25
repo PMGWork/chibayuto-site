@@ -1,0 +1,107 @@
+---
+import { loadQuery } from '../../sanity/lib/load-query';
+
+// Components
+import Layout from "../../layouts/Layout.astro";
+import WorkHeader from '../../components/work/WorkHeader.astro';
+import WorkCredits from '../../components/work/WorkCredits.astro';
+import WorkImage from '../../components/work/WorkImage.astro';
+import PortableTextComponents from '../../components/work/PortableTextComponent.tsx';
+
+// Types
+import type { SanityValues } from "../../../sanity.config";
+import type { ThumbnailValue } from "../../types";
+
+type Category = SanityValues['category'];
+type Work = Omit<SanityValues['work'], 'categories'> & {
+  categories?: Category[];
+  thumbnail?: ThumbnailValue;
+};
+
+export async function getStaticPaths() {
+  const { data: works } = await loadQuery<Work[]>({
+    query: `*[_type == "work"]`,
+  });
+
+  return works.map(({ slug }) => {
+    return {
+      params: {
+        work: slug.current,
+      },
+    };
+  });
+}
+
+const workQuery = `*[_type == "work" && slug.current == $slug][0]{
+  ...,
+  thumbnail {
+    ...,
+    asset-> {
+      ...,
+      metadata {
+        dimensions
+      }
+    }
+  },
+  categories[]-> {
+    ...,
+  },
+  content[]{
+    ...,
+    _type == "imageGroup" => {
+      images[]{
+        ...,
+        asset->{
+          ...,
+          metadata{
+            dimensions
+          }
+        }
+      }
+    }
+  }
+}`;
+
+const { work: slug } = Astro.params;
+const { data: work } = await loadQuery<Work>({
+  query: workQuery,
+  params: { slug }
+});
+
+if (!work) {
+  return Astro.redirect('/404');
+}
+---
+
+<Layout
+  title={work.name + " | Chiba Yuto"}
+>
+  <div
+    class="
+      bg-background text-foreground
+      text-body-sm sm:text-body-base tracking-wider
+    "
+  >
+    <main
+      class="
+        flex flex-col row-start-2 items-center sm:items-start
+        px-5 pt-28 pb-4 sm:px-20 sm:pt-40 sm:pb-10 max-w-screen-lg mx-auto
+      "
+    >
+      <WorkHeader name={work.name} startDate={work.startDate} endDate={work.endDate}/>
+      <WorkImage className="mt-8 sm:mt-12" name={work.name} thumbnail={work.thumbnail}/>
+      <WorkCredits className="mt-4" credits={work.credits} link={work.link} />
+
+      <div class="w-full mt-12 sm:mt-20">
+        {work.content && (
+          <div class="mx-auto flex flex-col gap-4">
+            <PortableTextComponents
+              client:visible
+              value={work.content}
+            />
+          </div>
+        )}
+      </div>
+    </main>
+  </div>
+</Layout>

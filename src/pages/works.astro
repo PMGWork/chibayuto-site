@@ -1,0 +1,51 @@
+---
+import { loadQuery } from '../sanity/lib/load-query';
+
+// Components
+import WorkList from '../components/works/WorkList.tsx';
+import Layout from '../layouts/Layout.astro';
+
+// Types
+import type { ThumbnailValue } from '../types';
+import type { SanityValues } from '../../sanity.config';
+
+type Category = SanityValues['category'];
+type Work = Omit<SanityValues['work'], 'categories'> & {
+  categories?: Category[];
+  thumbnail?: ThumbnailValue;
+};
+
+const categoryQuery = `*[_type == 'category']`;
+const worksQuery = `*[_type == "work"] | order(endDate desc) {
+  ...,
+  thumbnail {
+    ...,
+    asset-> {
+      ...,
+      metadata {
+        dimensions
+      }
+    }
+  },
+  categories[]-> {
+    ...
+  }
+}`;
+
+const [categoriesData, worksData] = await Promise.all([
+  loadQuery<Category[]>({ query: categoryQuery }),
+  loadQuery<Work[]>({ query: worksQuery })
+]);
+
+const categories = categoriesData.data;
+const works = worksData.data;
+---
+
+<Layout>
+  <div class="bg-background text-foreground text-body-sm sm:text-body-base tracking-wider">
+    <main class="flex flex-col gap-8 items-center sm:items-start px-5 pt-28 pb-4 sm:px-20 sm:pt-40 sm:pb-10 max-w-screen-lg mx-auto">
+      <h1 class="text-4xl text-center sm:text-left">Works</h1>
+      <WorkList client:visible initialCategories={categories} initialWorks={works} />
+    </main>
+  </div>
+</Layout>

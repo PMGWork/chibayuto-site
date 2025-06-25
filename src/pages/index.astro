@@ -1,11 +1,28 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import ProfileSection from '../components/index/ProfileSection.astro';
+import SkillsSection from '../components/index/SkillsSection.astro';
+import { skills } from '../data/skills';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const meta = {
+  title: "Home | Chiba Yuto",
+};
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title={meta.title}
+>
+  <div class="text-body-sm sm:text-body-base tracking-wider">
+    <main
+      class="
+        flex flex-col gap-8 items-start
+        px-5 pt-28 pb-12 sm:px-20 sm:pt-40 sm:pb-16 max-w-screen-lg mx-auto
+      "
+    >
+      <div class="flex flex-col gap-20 sm:gap-28">
+        <ProfileSection />
+        <SkillsSection skills={skills} />
+      </div>
+    </main>
+  </div>
 </Layout>

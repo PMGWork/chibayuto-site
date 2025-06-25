@@ -1,5 +1,5 @@
 {
-  "name": "pmgwork-site-astro",
+  "name": "chibayuto-site-astro",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -9,6 +9,28 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.7.12"
+    "@astrojs/react": "^4.2.7",
+    "@fontsource/manrope": "^5.2.5",
+    "@portabletext/react": "^3.2.1",
+    "@sanity-typed/types": "^8.0.0",
+    "@sanity/astro": "^3.2.6",
+    "@sanity/client": "^6.29.1",
+    "@sanity/image-url": "^1.1.0",
+    "@swup/astro": "^1.6.0",
+    "@tailwindcss/vite": "^4.1.6",
+    "@types/react": "^19.1.3",
+    "@types/react-dom": "^19.1.3",
+    "astro": "^5.7.12",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-is": "^19.1.0",
+    "react-player": "^2.16.0",
+    "react-social-media-embed": "^2.5.18",
+    "sanity": "^3.88.2",
+    "styled-components": "^6.1.18"
+  },
+  "devDependencies": {
+    "@astrojs/node": "^9.2.1",
+    "tailwindcss": "^4.1.6"
   }
 }
