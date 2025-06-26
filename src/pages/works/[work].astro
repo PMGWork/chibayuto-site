@@ -6,7 +6,7 @@ import Layout from "../../layouts/Layout.astro";
 import WorkHeader from '../../components/work/WorkHeader.astro';
 import WorkCredits from '../../components/work/WorkCredits.astro';
 import WorkImage from '../../components/work/WorkImage.astro';
-import PortableTextComponents from '../../components/work/PortableTextComponent.tsx';
+import WorkContent from '../../components/work/WorkContent.tsx';
 
 // Types
 import type { SanityValues } from "../../../sanity.config";
@@ -85,7 +85,7 @@ if (!work) {
     <main
       class="
         flex flex-col row-start-2 items-center sm:items-start
-        px-5 pt-28 pb-4 sm:px-20 sm:pt-40 sm:pb-10 max-w-screen-lg mx-auto
+        px-5 pt-28 pb-4 sm:px-20 sm:pt-40 sm:pb-10 max-w-screen-xl mx-auto
       "
     >
       <WorkHeader name={work.name} startDate={work.startDate} endDate={work.endDate}/>
@@ -94,11 +94,8 @@ if (!work) {
 
       <div class="w-full mt-12 sm:mt-20">
         {work.content && (
-          <div class="mx-auto flex flex-col gap-4">
-            <PortableTextComponents
-              client:visible
-              value={work.content}
-            />
+          <div class="mx-auto">
+            <WorkContent client:visible content={work.content} />
           </div>
         )}
       </div>

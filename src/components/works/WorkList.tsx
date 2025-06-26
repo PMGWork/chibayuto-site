@@ -30,16 +30,23 @@ export default function WorkList({ initialCategories, initialWorks }: WorkListPr
     : initialWorks;
 
   return (
-    <div className="w-full">
-      <CategoryButtons
-        categories={initialCategories}
-        selectedCategory={selectedCategory}
-        onSelectCategory={setSelectedCategory}
-      />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mt-6">
-        {filteredWorks.map((work, index) => (
-          <WorkCard key={index} work={work} />
-        ))}
+    <div className="w-full flex flex-col lg:flex-row gap-16 justify-between">
+      <div className="flex-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+          {filteredWorks.map((work, index) => (
+            <WorkCard key={index} work={work} />
+          ))}
+        </div>
+      </div>
+
+      <div className="lg:w-36">
+        <div className="lg:sticky lg:top-40 w-32 lg:ml-auto">
+          <CategoryButtons
+            categories={initialCategories}
+            selectedCategory={selectedCategory}
+            onSelectCategory={setSelectedCategory}
+          />
+        </div>
       </div>
     </div>
   );
