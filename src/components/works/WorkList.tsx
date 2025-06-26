@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { SanityValues } from '../../../sanity.config';
 import type { ThumbnailValue } from '../../types';
 
@@ -16,6 +16,45 @@ type Work = Omit<SanityValues['work'], 'categories'> & {
 interface WorkListProps {
   initialCategories: Category[];
   initialWorks: Work[];
+}
+
+interface WorkItemProps {
+  work: Work;
+  index: number;
+}
+
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+
+function WorkItem({ work, index }: WorkItemProps) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useIntersectionObserver({
+    target: ref,
+    onIntersect: (entry) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+      }
+    },
+    threshold: 0.1,
+    rootMargin: '0px 0px 25% 0px',
+  });
+
+  return (
+    <div
+      ref={ref}
+      className="transition-all duration-1200 transform"
+      style={{
+        transitionDelay: `${index * 100}ms`,
+        transitionTimingFunction: 'cubic-bezier(.1,1,.3,1)',
+        filter: isVisible ? 'blur(0px)' : 'blur(4px)',
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(10px)',
+      }}
+    >
+      <WorkCard work={work} />
+    </div>
+  );
 }
 
 export default function WorkList({ initialCategories, initialWorks }: WorkListProps) {
@@ -34,7 +73,11 @@ export default function WorkList({ initialCategories, initialWorks }: WorkListPr
       <div className="flex-1">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
           {filteredWorks.map((work, index) => (
-            <WorkCard key={index} work={work} />
+            <WorkItem
+              key={`${selectedCategory?.slug?.current || 'all'}-${work.slug?.current || index}`}
+              work={work}
+              index={index}
+            />
           ))}
         </div>
       </div>
