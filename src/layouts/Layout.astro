@@ -7,7 +7,7 @@ import "../styles/global.css";
 import "@fontsource/manrope/500.css";
 import "@fontsource/manrope/600.css";
 
-const { title, description } = Astro.props;
+const { title, description, footerMaxWidth } = Astro.props;
 
 const anim = {
   old: {
@@ -58,7 +58,7 @@ const fadeTransition = {
     <main transition:animate={fadeTransition}>
       <slot />
     </main>
-		<Footer transition:animate={fadeTransition}/>
+		<Footer transition:animate={fadeTransition} maxWidth={footerMaxWidth}/>
 	</body>
 </html>
 

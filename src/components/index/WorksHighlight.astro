@@ -1,0 +1,67 @@
+---
+import { loadQuery } from '../../sanity/lib/load-query';
+import WorkCard from '../works/WorkCard';
+import type { ThumbnailValue } from '../../types';
+import type { SanityValues } from '../../../sanity.config';
+
+type Category = SanityValues['category'];
+type Work = Omit<SanityValues['work'], 'categories'> & {
+  categories?: Category[];
+  thumbnail?: ThumbnailValue;
+};
+
+const worksQuery = `*[_type == "work"] | order(endDate desc) {
+  ...,
+  thumbnail {
+    ...,
+    asset-> {
+      ...,
+      metadata {
+        dimensions
+      }
+    }
+  },
+  categories[]-> {
+    ...
+  }
+}`;
+
+const worksData = await loadQuery<Work[]>({ query: worksQuery });
+const works = worksData.data;
+---
+
+<div class="w-full overflow-x-hidden">
+  <div class="flex w-[10000px]">
+    <div class="animate-scroll flex">
+      {works.map((work) => (
+        <div class="flex flex-col justify-end gap-1 items-end">
+          {work.thumbnail && (
+            <img
+              src={work.thumbnail.asset.url}
+              class="w-auto h-[350px] object-cover"
+            />
+          )}
+          {work.name && (
+            <div class="text-gray-500 text-[10px] text-right px-1">
+              {work.name}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+    <style>
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      .animate-scroll {
+        animation: scroll 60s linear infinite;
+      }
+    </style>
+  </div>
+</div>

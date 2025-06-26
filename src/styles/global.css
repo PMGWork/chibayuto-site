@@ -3,6 +3,7 @@
 @theme {
   --color-background: #f0f0f0;
   --color-foreground: #181818;
+
   --text-body-base: 15px;
   --text-body-base--line-height: 1.9;
   --text-body-base--letter-spacing: 0.05em;
@@ -11,6 +12,16 @@
   --text-body-sm--line-height: 1.9;
   --text-body-sm--letter-spacing: 0.05em;
   --text-body-sm--font-weight: 500;
+
+  --container-dp: 1280px;
+  --container-pc: 1080px;
+  --container-tb: 800px;
+  --container-sp: 375px;
+
+  --breakpoint-dp: 1280px;
+  --breakpoint-pc: 1080px;
+  --breakpoint-tb: 800px;
+  --breakpoint-sp: 375px;
 }
 
 :root {
@@ -29,4 +40,14 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600 !important;
   font-feature-settings: "palt";
+}
+
+/* スクロールバーを隠す */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

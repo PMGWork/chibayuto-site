@@ -1,6 +1,8 @@
 ---
 import ProfileSection from '../components/index/ProfileSection.astro';
 import SkillsSection from '../components/index/SkillsSection.astro';
+import WorksHighlight from '../components/index/WorksHighlight.astro';
+import ContactSection from '../components/index/ContactSection.astro';
 import { skills } from '../data/skills';
 import Layout from '../layouts/Layout.astro';
 
@@ -11,18 +13,33 @@ const meta = {
 
 <Layout
   title={meta.title}
+  footerMaxWidth="pc"
 >
   <div class="text-body-sm sm:text-body-base tracking-wider">
-    <main
+    <div
       class="
         flex flex-col gap-8 items-start
-        px-5 pt-28 pb-12 sm:px-20 sm:pt-40 sm:pb-16 max-w-screen-lg mx-auto
+        px-5 py-28 max-w-pc mx-auto
+        sm:px-20 sm:py-40
       "
     >
-      <div class="flex flex-col gap-20 sm:gap-28">
-        <ProfileSection />
+      <ProfileSection />
+    </div>
+
+    <WorksHighlight />
+
+    <div
+      class="
+        flex flex-col gap-8 items-start
+        px-5 pt-28 pb-12 max-w-pc mx-auto
+        sm:px-20 sm:pt-32 sm:pb-24
+      "
+    >
+      <div class="flex flex-col gap-20 sm:gap-28 w-full">
         <SkillsSection skills={skills} />
+        <ContactSection />
       </div>
-    </main>
+    </div>
+
   </div>
 </Layout>

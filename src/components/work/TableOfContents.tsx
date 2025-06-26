@@ -69,21 +69,18 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
       <div className="p-2">
         <h3 className="text-xs font-medium text-gray-500 mb-3 uppercase tracking-wide">目次</h3>
         <ul className="space-y-1">
-          {headings.map(({ id, text, level }) => (
+          {headings.map(({ id, text }) => (
             <li key={id}>
               <button
                 onClick={() => scrollToHeading(id)}
                 className={`
-                  block w-full text-left py-1 text-sm transition-colors cursor-pointer
-                  hover:text-foreground
+                  w-full text-left text-sm cursor-pointer
+                  hover:text-foreground hover:underline
                   ${activeId === id
                     ? "text-foreground font-bold"
                     : "text-gray-500"
                   }
                 `}
-                style={{
-                  paddingLeft: level > 1 ? `${(level - 1) * 0.75}rem` : "0"
-                }}
               >
                 {text}
               </button>

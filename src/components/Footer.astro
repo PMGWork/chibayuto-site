@@ -1,9 +1,20 @@
 ---
+interface Props {
+  maxWidth?: 'dp' | 'pc' | 'full';
+}
+
+const { maxWidth = 'dp' } = Astro.props;
 const year = new Date().getFullYear();
+
+const maxWidthClass = {
+  'dp': 'max-w-dp',
+  'pc': 'max-w-pc',
+  'full': 'max-w-full'
+}[maxWidth];
 ---
 
 <footer class="text-body-sm sm:text-body-base py-8">
-  <div class="flex justify-between items-center px-5 sm:px-20 max-w-screen-xl mx-auto">
+  <div class={`flex justify-between items-center px-5 sm:px-20 ${maxWidthClass} mx-auto`}>
     <p>Yuto CHIBA</p>
     <p class="flex gap-6">
       &copy; {year} Yuto CHIBA.
