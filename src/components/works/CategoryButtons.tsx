@@ -31,7 +31,7 @@ export default function CategoryButtons({
     const baseClass =
       "px-3 py-1 rounded-full text-body-sm " +
       "transition-all duration-300 ease-in-out cursor-pointer";
-    const selectedClass = "bg-foreground text-background";
+    const selectedClass = "bg-foreground text-background border border-background";
     const unselectedClass =
       "bg-background text-gray-500 border border-gray-200 " +
       "hover:bg-gray-200";

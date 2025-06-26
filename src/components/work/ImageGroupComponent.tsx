@@ -18,7 +18,6 @@ export function ImageGroupComponent({ value }: { value: ImageGroupValue }) {
               width={dimensions.width}
               height={dimensions.height}
               decoding="async"
-              loading="lazy"
             />
           ) : null }
           {image.caption && (
@@ -43,7 +42,6 @@ export function ImageGroupComponent({ value }: { value: ImageGroupValue }) {
                   height={dimensions.height}
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) calc(50vw - 1.5rem), 410px"
                   decoding="async"
-                  loading="lazy"
                 />
               ) : null }
               {image.caption && (

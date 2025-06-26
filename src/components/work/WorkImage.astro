@@ -22,7 +22,6 @@ const { className = '', name, thumbnail } = Astro.props;
         alt={name}
         width={thumbnail.asset.metadata.dimensions.width}
         height={thumbnail.asset.metadata.dimensions.height}
-        loading="lazy"
         decoding="async"
       />
     ) : (

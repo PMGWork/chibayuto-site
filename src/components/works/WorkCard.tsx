@@ -28,7 +28,6 @@ export default function WorkCard({work}: WorkCardProps) {
               width={work.thumbnail.asset.metadata.dimensions.width}
               height={work.thumbnail.asset.metadata.dimensions.height}
               decoding="async"
-              loading="lazy"
             />
           ) : (
             <div className="w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center">
