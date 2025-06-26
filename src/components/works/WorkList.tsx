@@ -81,7 +81,7 @@ export default function WorkList({ initialCategories, initialWorks }: WorkListPr
 
       <div className="flex flex-col lg:flex-row gap-16 justify-between">
         <div className="flex-1">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredWorks.map((work, index) => (
               <WorkItem
                 key={`${selectedCategory?.slug?.current || 'all'}-${work.slug?.current || index}`}
@@ -94,7 +94,7 @@ export default function WorkList({ initialCategories, initialWorks }: WorkListPr
 
         {/* デスクトップ用：右側にカテゴリボタン */}
         <div className="hidden lg:block lg:w-32">
-          <div className="lg:sticky lg:top-40 w-32 lg:ml-auto">
+          <div className="lg:sticky lg:top-40 lg:ml-auto">
             <CategoryButtons
               categories={initialCategories}
               selectedCategory={selectedCategory}

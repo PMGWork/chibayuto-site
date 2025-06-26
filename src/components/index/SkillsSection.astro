@@ -15,7 +15,7 @@ const categories = Array.from(new Set(skills.map(skill => skill.category)));
     {categories.map((category) => (
       <div>
         <h2 class="text-xl font-bold py-4">{category}</h2>
-        <div class="flex gap-2 flex-row flex-wrap">
+        <div class="flex gap-2 flex-wrap">
           {skills
             .filter(skill => skill.category === category)
             .map((skill) => (

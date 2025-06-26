@@ -32,7 +32,7 @@ export default function CategoryButtons({
       "px-3 py-1 rounded-full text-body-sm " +
       "transition-all duration-300 ease-in-out cursor-pointer";
     const selectedClass =
-      "bg-cyan-600 text-background border border-background border border-cyan-600";
+      "bg-cyan-600 text-background border border-cyan-600";
     const unselectedClass =
       "bg-background text-gray-500 border border-gray-200 " +
       "hover:border-cyan-600";
@@ -73,7 +73,7 @@ export default function CategoryButtons({
 
       {/* デスクトップ用 */}
       <div className="hidden lg:flex flex-col gap-2 items-end">
-        <div className="flex gap-1 items-center justify-end group">
+        <div className="flex gap-2 items-center justify-end group">
           <div className={getLineClass(selectedCategory === null)}>
           </div>
           <button

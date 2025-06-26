@@ -13,21 +13,19 @@ interface Props {
 const { className = '', name, thumbnail } = Astro.props;
 ---
 
-<div class={className}>
-  <div class="w-full">
-    {thumbnail?.asset?.metadata?.dimensions ? (
-      <Image
-        class="rounded-lg border-gray-200 border"
-        src={urlForImage(thumbnail).url()}
-        alt={name}
-        width={thumbnail.asset.metadata.dimensions.width}
-        height={thumbnail.asset.metadata.dimensions.height}
-        decoding="async"
-      />
-    ) : (
-      <div class="w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center">
-        <p class="text-gray-500">画像がありません</p>
-      </div>
-    )}
-  </div>
+<div class={`w-full ${className}`}>
+  {thumbnail?.asset?.metadata?.dimensions ? (
+    <Image
+      class="rounded-lg border-gray-200 border"
+      src={urlForImage(thumbnail).url()}
+      alt={name}
+      width={thumbnail.asset.metadata.dimensions.width}
+      height={thumbnail.asset.metadata.dimensions.height}
+      decoding="async"
+    />
+  ) : (
+    <div class="w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center">
+      <p class="text-gray-500">画像がありません</p>
+    </div>
+  )}
 </div>

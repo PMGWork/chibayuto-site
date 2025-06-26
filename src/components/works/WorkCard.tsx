@@ -22,7 +22,7 @@ export default function WorkCard({work}: WorkCardProps) {
         <div className="relative w-full overflow-hidden rounded-lg border-gray-200 border" style={{ paddingBottom: '56.25%' }}>
           {work.thumbnail?.asset?.metadata?.dimensions ? (
             <img
-              className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-105"
+              className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-300 ease-in-out hover:scale-105"
               src={urlForImage(work.thumbnail).url()}
               alt={work?.name || '作品イメージ'}
               width={work.thumbnail.asset.metadata.dimensions.width}

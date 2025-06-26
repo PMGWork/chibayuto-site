@@ -78,13 +78,12 @@ if (!work) {
 >
   <div
     class="
-      bg-background text-foreground
       text-body-sm sm:text-body-base tracking-wider
     "
   >
     <main
       class="
-        flex flex-col row-start-2 items-center sm:items-start
+        flex flex-col items-center sm:items-start
         px-5 pt-28 pb-4 sm:px-20 sm:pt-40 sm:pb-10 max-w-dp mx-auto
       "
     >
@@ -94,9 +93,7 @@ if (!work) {
 
       <div class="w-full mt-12 sm:mt-20">
         {work.content && (
-          <div class="mx-auto">
-            <WorkContent client:visible content={work.content} />
-          </div>
+          <WorkContent client:visible content={work.content} />
         )}
       </div>
     </main>

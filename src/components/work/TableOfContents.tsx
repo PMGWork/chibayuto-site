@@ -75,7 +75,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                 onClick={() => scrollToHeading(id)}
                 className={`
                   w-full text-left text-sm cursor-pointer
-                  hover:text-foreground hover:underline
+                  hover:text-foreground hover:underline transition-colors
                   ${activeId === id
                     ? "text-foreground font-bold"
                     : "text-gray-500"
