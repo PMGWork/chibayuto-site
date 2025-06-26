@@ -30,11 +30,9 @@ export default function WorkContent({ content }: WorkContentProps) {
       </div>
 
       {/* 目次 */}
-      {headings.length > 0 && (
-        <div className="hidden lg:block w-64 flex-shrink-0">
-          <TableOfContents headings={headings} />
-        </div>
-      )}
+      <div className="hidden lg:block w-64 flex-shrink-0">
+        <TableOfContents headings={headings} />
+      </div>
     </div>
   );
 }

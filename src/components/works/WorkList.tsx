@@ -37,15 +37,15 @@ function WorkItem({ work, index }: WorkItemProps) {
       }
     },
     threshold: 0.1,
-    rootMargin: '0px 0px 25% 0px',
+    rootMargin: '0px 0px 40% 0px',
   });
 
   return (
     <div
       ref={ref}
-      className="transition-all duration-1500 transform"
+      className="transition-all duration-[1500ms] transform"
       style={{
-        transitionDelay: `${400 + index * 75}ms`,
+        transitionDelay: `${index * 75}ms`,
         transitionTimingFunction: 'cubic-bezier(.1,1,.3,1)',
         filter: isVisible ? 'blur(0px)' : 'blur(4px)',
         opacity: isVisible ? 1 : 0,
