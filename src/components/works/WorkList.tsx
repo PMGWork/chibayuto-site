@@ -43,13 +43,13 @@ function WorkItem({ work, index }: WorkItemProps) {
   return (
     <div
       ref={ref}
-      className="transition-all duration-1200 transform"
+      className="transition-all duration-1500 transform"
       style={{
-        transitionDelay: `${index * 100}ms`,
+        transitionDelay: `${400 + index * 75}ms`,
         transitionTimingFunction: 'cubic-bezier(.1,1,.3,1)',
         filter: isVisible ? 'blur(0px)' : 'blur(4px)',
         opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(10px)',
+        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
       }}
     >
       <WorkCard work={work} />

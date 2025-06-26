@@ -4,7 +4,6 @@ import { defineConfig } from 'astro/config';
 import sanity from '@sanity/astro';
 import react from '@astrojs/react';
 import node from '@astrojs/node';
-import swup from '@swup/astro';
 
 import tailwindcss from '@tailwindcss/vite';
 
@@ -19,13 +18,6 @@ export default defineConfig({
       studioBasePath: '/studio'
     }),
     react(),
-    swup({
-      theme: false,
-      smoothScrolling: true,
-      updateBodyClass: true,
-      containers: ['#swup'],
-      cache: false,
-    })
   ],
   vite: {
     plugins: [tailwindcss()]
