@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.2.7",
+    "@astrojs/vercel": "^8.2.0",
     "@fontsource/manrope": "^5.2.5",
     "@portabletext/react": "^3.2.1",
     "@sanity-typed/types": "^8.0.0",
