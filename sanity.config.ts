@@ -3,8 +3,8 @@ import { structureTool } from "sanity/structure";
 import { schemaTypes } from './src/sanity/schemaTypes'
 
 const config = defineConfig({
-  projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
-  dataset: import.meta.env.PUBLIC_SANITY_DATASET,
+  projectId: 'rao1a119',
+  dataset: 'production',
   plugins: [
     structureTool()
   ],
