@@ -69,26 +69,38 @@ export default function WorkList({ initialCategories, initialWorks }: WorkListPr
     : initialWorks;
 
   return (
-    <div className="w-full flex flex-col lg:flex-row gap-16 justify-between">
-      <div className="flex-1">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-          {filteredWorks.map((work, index) => (
-            <WorkItem
-              key={`${selectedCategory?.slug?.current || 'all'}-${work.slug?.current || index}`}
-              work={work}
-              index={index}
-            />
-          ))}
-        </div>
+    <div className="w-full flex flex-col gap-8">
+      {/* モバイル・タブレット用：上部にカテゴリボタン */}
+      <div className="lg:hidden">
+        <CategoryButtons
+          categories={initialCategories}
+          selectedCategory={selectedCategory}
+          onSelectCategory={setSelectedCategory}
+        />
       </div>
 
-      <div className="lg:w-36">
-        <div className="lg:sticky lg:top-40 w-32 lg:ml-auto">
-          <CategoryButtons
-            categories={initialCategories}
-            selectedCategory={selectedCategory}
-            onSelectCategory={setSelectedCategory}
-          />
+      <div className="flex flex-col lg:flex-row gap-16 justify-between">
+        <div className="flex-1">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+            {filteredWorks.map((work, index) => (
+              <WorkItem
+                key={`${selectedCategory?.slug?.current || 'all'}-${work.slug?.current || index}`}
+                work={work}
+                index={index}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* デスクトップ用：右側にカテゴリボタン */}
+        <div className="hidden lg:block lg:w-32">
+          <div className="lg:sticky lg:top-40 w-32 lg:ml-auto">
+            <CategoryButtons
+              categories={initialCategories}
+              selectedCategory={selectedCategory}
+              onSelectCategory={setSelectedCategory}
+            />
+          </div>
         </div>
       </div>
     </div>
