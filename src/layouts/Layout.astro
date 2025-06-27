@@ -61,15 +61,3 @@ const fadeTransition = {
 		<Footer transition:animate={fadeTransition} maxWidth={footerMaxWidth}/>
 	</body>
 </html>
-
-<style is:global>
-  @keyframes fadeOut {
-    from { opacity: 1; filter: blur(0); }
-    to   { opacity: 0; filter: blur(2px); }
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; filter: blur(3px); transform: translateY(30px); }
-    to   { opacity: 1; filter: blur(0); transform: translateY(0); }
-  }
-</style>
