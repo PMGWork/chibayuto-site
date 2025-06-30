@@ -9,27 +9,6 @@ import "@fontsource/manrope/600.css";
 
 const { title, description, footerMaxWidth } = Astro.props;
 
-const anim = {
-  old: {
-    name: "fadeOut",
-    duration: "0.4s",
-    easing: "ease",
-    fillMode: "forwards",
-  },
-  new: {
-    name: "fadeIn",
-    duration: "1.5s",
-    easing: "cubic-bezier(.1,1,.3,1)",
-    delay: "0.4s",
-    fillMode: "backwards",
-  },
-};
-
-const fadeTransition = {
-  forwards: anim,
-  backwards: anim,
-};
-
 ---
 
 <!doctype html>
@@ -54,10 +33,65 @@ const fadeTransition = {
     </script>
 	</head>
 	<body>
-		<Header transition:animate="none" />
-    <main transition:animate={fadeTransition}>
+		<Header />
+    <main>
       <slot />
     </main>
-		<Footer transition:animate={fadeTransition} maxWidth={footerMaxWidth}/>
+		<Footer maxWidth={footerMaxWidth}/>
 	</body>
 </html>
+
+<script is:inline>
+  if (typeof document !== 'undefined') {
+    const FADE_OUT = 'page-fade-out';
+    const FADE_IN = 'page-fade-in';
+
+      // フェードアウトが完了してからローディングを開始
+      document.addEventListener('astro:before-preparation', (event) => {
+        // @ts-ignore – 型宣言を気にせず元のloaderを退避
+        const originalLoader = event.loader;
+        // loader を差し替え
+        // 1. 現在のページをフェードアウト
+        // 2. フェードアウト完了後に本来の loader を実行
+        event.loader = async () => {
+          const elements = Array.from(document.querySelectorAll('main, footer'));
+          if (elements.length) {
+            // フェードアウトを開始
+            elements.forEach((el) => el.classList.add(FADE_OUT));
+
+          // すべての要素の animationend を待つ
+          await Promise.all(
+            elements.map(
+              (el) =>
+                new Promise((resolve) => {
+                  const onEnd = () => {
+                    el.removeEventListener('animationend', onEnd);
+                    resolve(null);
+                  };
+                  el.addEventListener('animationend', onEnd, { once: true });
+                })
+            )
+          );
+        }
+        // フェードアウト後にコンテンツをロード
+        await originalLoader();
+      };
+    });
+
+    // スワップ後にフェードイン開始
+    document.addEventListener('astro:after-swap', () => {
+      const elements = document.querySelectorAll('main, footer');
+      elements.forEach((el) => {
+        el.classList.remove(FADE_OUT);
+        el.classList.add(FADE_IN);
+        el.addEventListener(
+          'animationend',
+          () => {
+            el.classList.remove(FADE_IN);
+          },
+          { once: true }
+        );
+      });
+    });
+  }
+</script>
