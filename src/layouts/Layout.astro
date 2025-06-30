@@ -48,6 +48,10 @@ const { title, description, footerMaxWidth } = Astro.props;
 
       // フェードアウトが完了してからローディングを開始
       document.addEventListener('astro:before-preparation', (event) => {
+        // 既存のアニメーションクラスをリセット
+        document.querySelectorAll('main, footer').forEach((el) => {
+          el.classList.remove(FADE_OUT, FADE_IN);
+        });
         // @ts-ignore – 型宣言を気にせず元のloaderを退避
         const originalLoader = event.loader;
         // loader を差し替え
@@ -55,28 +59,30 @@ const { title, description, footerMaxWidth } = Astro.props;
         // 2. フェードアウト完了後に本来の loader を実行
         event.loader = async () => {
           const elements = Array.from(document.querySelectorAll('main, footer'));
+
           if (elements.length) {
             // フェードアウトを開始
             elements.forEach((el) => el.classList.add(FADE_OUT));
 
-          // すべての要素の animationend を待つ
-          await Promise.all(
-            elements.map(
-              (el) =>
-                new Promise((resolve) => {
-                  const onEnd = () => {
-                    el.removeEventListener('animationend', onEnd);
-                    resolve(null);
-                  };
-                  el.addEventListener('animationend', onEnd, { once: true });
-                })
-            )
-          );
-        }
-        // フェードアウト後にコンテンツをロード
-        await originalLoader();
-      };
-    });
+            // すべての要素の animationend を待つ
+            await Promise.all(
+              elements.map(
+                (el) =>
+                  new Promise((resolve) => {
+                    const onEnd = () => {
+                      el.removeEventListener('animationend', onEnd);
+                      resolve(null);
+                    };
+                    el.addEventListener('animationend', onEnd, { once: true });
+                  })
+              )
+            );
+          }
+
+          // フェードアウト後にコンテンツをロード
+          await originalLoader();
+        };
+      });
 
     // スワップ後にフェードイン開始
     document.addEventListener('astro:after-swap', () => {

@@ -9,6 +9,10 @@ import tailwindcss from '@tailwindcss/vite';
 
 import vercel from '@astrojs/vercel';
 
+// 環境に基づいてアダプターを選択
+const isPreview = process.env.ASTRO_PREVIEW === 'true';
+const isDev = process.env.NODE_ENV === 'development';
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [
@@ -24,5 +28,8 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
-  adapter: vercel(),
+  // previewモードまたは開発モードの場合はnodeアダプター、それ以外はvercelアダプター
+  adapter: (isPreview || isDev) ? node({
+    mode: 'standalone'
+  }) : vercel(),
 });

@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "build:preview": "ASTRO_PREVIEW=true astro build",
+    "preview": "ASTRO_PREVIEW=true astro preview",
     "astro": "astro"
   },
   "dependencies": {
