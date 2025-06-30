@@ -1,5 +1,6 @@
 ---
 import { loadQuery } from '../../sanity/lib/load-query';
+import { urlForImage } from '../../sanity/lib/url-for-image';
 import WorkCard from '../works/WorkCard';
 import type { ThumbnailValue } from '../../types';
 import type { SanityValues } from '../../../sanity.config';
@@ -37,7 +38,11 @@ const works = worksData.data;
         <div class="flex flex-col justify-end gap-1 items-end">
           {work.thumbnail && (
             <img
-              src={work.thumbnail.asset.url}
+              src={urlForImage(work.thumbnail.asset)
+                .height(700)
+                .auto('format')
+                .url()}
+              alt={work.name || '作品のサムネイル画像'}
               class="w-auto h-[350px] object-cover"
             />
           )}

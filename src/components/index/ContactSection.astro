@@ -8,16 +8,19 @@ const contacts = [
     name: 'chiba.yuto.2003(@)gmail.com',
     href: 'mailto:chiba.yuto.2003@gmail.com',
     icon: 'email',
+    ariaLabel: 'Email',
   },
   {
     name: 'PMGWork',
     href: 'https://x.com/PMGWork',
     icon: 'twitter',
+    ariaLabel: 'Twitter',
   },
   {
-    name: 'PMGWork',
-    href: 'https://github.com/',
+    name: 'chiba-yuto',
+    href: 'https://github.com/chiba-yuto',
     icon: 'github',
+    ariaLabel: 'GitHub',
   }
 ];
 ---
@@ -28,6 +31,7 @@ const contacts = [
     {contacts.map((contact) => (
       <a
         href={contact.href}
+        aria-label={contact.ariaLabel}
         class="
           flex items-center gap-2 p-[14px] sm:px-4 sm:py-3
           border-gray-200 border rounded-full
