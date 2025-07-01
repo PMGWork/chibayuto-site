@@ -1,7 +1,7 @@
 ---
 import { loadQuery } from '../../sanity/lib/load-query';
 import { urlForImage } from '../../sanity/lib/url-for-image';
-import WorkCard from '../works/WorkCard';
+import { Image } from 'astro:assets';
 import type { ThumbnailValue } from '../../types';
 import type { SanityValues } from '../../../sanity.config';
 
@@ -37,13 +37,17 @@ const works = worksData.data;
       {works.map((work) => (
         <div class="flex flex-col justify-end gap-1 items-end">
           {work.thumbnail && (
-            <img
+            <Image
               src={urlForImage(work.thumbnail.asset)
                 .height(700)
                 .auto('format')
                 .url()}
               alt={work.name || '作品のサムネイル画像'}
               class="w-auto h-[350px] object-cover"
+              width={work.thumbnail.asset?.metadata?.dimensions?.width || 700}
+              height={350}
+              decoding="async"
+              loading="eager"
             />
           )}
           {work.name && (

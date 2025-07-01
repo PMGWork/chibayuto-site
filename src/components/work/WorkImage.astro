@@ -22,6 +22,7 @@ const { className = '', name, thumbnail } = Astro.props;
       width={thumbnail.asset.metadata.dimensions.width}
       height={thumbnail.asset.metadata.dimensions.height}
       decoding="async"
+      loading="eager"
     />
   ) : (
     <div class="w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center">
