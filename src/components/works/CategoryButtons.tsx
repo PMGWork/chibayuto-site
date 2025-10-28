@@ -32,10 +32,10 @@ export default function CategoryButtons({
       "px-3 py-1 rounded-full text-body-sm " +
       "transition-all duration-300 ease-in-out cursor-pointer";
     const selectedClass =
-      "bg-cyan-600 text-background border border-cyan-600";
+      "bg-primary text-background border border-primary";
     const unselectedClass =
       "bg-background text-gray-500 border border-gray-200 " +
-      "hover:border-cyan-600";
+      "hover:border-primary";
 
     return `${baseClass} ${isSelected ? selectedClass : unselectedClass}`;
   };
@@ -43,7 +43,7 @@ export default function CategoryButtons({
   // 線のクラスを取得（デスクトップ用）
   const getLineClass = (isSelected: boolean) => {
     const baseClass =
-      "h-0.5 w-0 bg-cyan-600 rounded-full " +
+      "h-0.5 w-0 bg-primary rounded-full " +
       "transition-all duration-300 ease-in-out";
     return `${baseClass} ${isSelected ? 'w-2' : ''}`;
   };

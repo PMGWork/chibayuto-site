@@ -48,18 +48,5 @@ export default function EmbedComponent({ url }: EmbedComponentProps) {
         />
       </div>
     );
-  } else {
-    return (
-      <div className="flex justify-center my-8">
-        <a
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-cyan-600 hover:text-cyan-800 underline"
-        >
-          {url}
-        </a>
-      </div>
-    );
   }
 }

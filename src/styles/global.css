@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #f0f0f0;
-  --color-foreground: #181818;
+  --color-background: #f8f8f8;
+  --color-foreground: #242424;
+  --color-primary: #28A8D0;
 
   --text-body-base: 15px;
   --text-body-base--line-height: 1.9;
@@ -25,8 +26,8 @@
 }
 
 :root {
-  --background: #f0f0f0;
-  --foreground: #181818;
+  --background: var(--color-background);
+  --foreground: var(--color-foreground);
 }
 
 body {
