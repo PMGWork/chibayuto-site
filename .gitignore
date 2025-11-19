@@ -29,6 +29,3 @@ pnpm-debug.log*
 
 # sanity
 .sanity/
-
-# codex
-AGENTS.md
