@@ -2,7 +2,7 @@
 import path from "path";
 import { getCollection, render } from "astro:content";
 import type { Work } from "../../types/work";
-import { getAssetFolderName } from "../../utils/work";
+import { getAssetFolderName, getThumbnailPath } from "../../utils/work";
 
 // Components
 import Layout from "../../layouts/Layout.astro";
@@ -13,21 +13,24 @@ import TableOfContents from "../../components/work/TableOfContents";
 export async function getStaticPaths() {
   const rawWorks = await getCollection("works");
 
-  const works: Work[] = rawWorks.map((work) => {
-    const { thumbnail } = work.data;
-    if (!thumbnail) return work;
+  // テンプレート用のダミー記事は静的生成対象から除外する
+  const works: Work[] = rawWorks
+    .filter((work) => !work.id.startsWith("template/"))
+    .map((work) => {
+      const { thumbnail } = work.data;
+      if (!thumbnail) return work;
 
-    const obsidianImageMatch = thumbnail.match(/!?\[\[([^\]]+)\]\]/);
-    if (!obsidianImageMatch) return work;
+      const obsidianImageMatch = thumbnail.match(/!?\[\[([^\]]+)\]\]/);
+      if (!obsidianImageMatch) return work;
 
-    const filename = obsidianImageMatch[1];
-    const assetFolderName = getAssetFolderName(work);
+      const filename = obsidianImageMatch[1];
+      const assetFolderName = getAssetFolderName(work);
 
-    return {
-      ...work,
-      thumbnail: `/works/assets/${assetFolderName}/${filename}`,
-    };
-  });
+      return {
+        ...work,
+        thumbnail: getThumbnailPath(work, filename),
+      };
+    });
 
   return works.map((work: Work) => ({
     params: { work: work.id },

@@ -10,3 +10,7 @@ export const getAssetFolderName = (work: Work) => {
 
   return work.id.replace(/\.mdx?$/, "");
 };
+
+export const getThumbnailPath = (work: Work, filename: string) => {
+  return `/works-assets/${getAssetFolderName(work)}/${filename}`;
+};

@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import type { Work } from "../../types/work";
-import { getAssetFolderName } from "../../utils/work";
+import { getAssetFolderName, getThumbnailPath } from "../../utils/work";
 
 const rawWorks = await getCollection("works");
 
@@ -14,7 +14,7 @@ const worksWithThumbnails: Work[] = rawWorks.map((work) => {
     const assetFolderName = getAssetFolderName(work);
     return {
       ...work,
-      thumbnail: `/works/assets/${assetFolderName}/${filename}`,
+      thumbnail: getThumbnailPath(work, filename),
     };
   }
   return work;

@@ -2,7 +2,7 @@
 import path from "path";
 import { getCollection } from "astro:content";
 import type { Work } from "../types/work";
-import { getAssetFolderName } from "../utils/work";
+import { getAssetFolderName, getThumbnailPath } from "../utils/work";
 
 // Components
 import WorkList from "../components/works/WorkList.tsx";
@@ -25,12 +25,11 @@ const worksWithThumbnails: Work[] = rawWorks.map((work) => {
   if (!obsidianImageMatch) return { ...work, title };
 
   const filename = obsidianImageMatch[1];
-  const assetFolderName = getAssetFolderName(work);
 
   return {
     ...work,
     title,
-    thumbnail: `/works/assets/${assetFolderName}/${filename}`,
+    thumbnail: getThumbnailPath(work, filename),
   };
 });
 
