@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import type { WorkWithThumbnail } from "../../types/work";
+import { getAssetFolderName } from "../../utils/work";
 
 const rawWorks = await getCollection("works");
 
@@ -10,10 +11,10 @@ const worksWithThumbnails: WorkWithThumbnail[] = rawWorks.map((work) => {
   const obsidianImageMatch = body.match(/!\[\[([^\]]+)\]\]/);
   if (obsidianImageMatch) {
     const filename = obsidianImageMatch[1];
-    const entryId = work.id.replace(/\.mdx?$/, "");
+    const assetFolderName = getAssetFolderName(work);
     return {
       ...work,
-      thumbnail: `/works/assets/${entryId}/${filename}`,
+      thumbnail: `/works/assets/${assetFolderName}/${filename}`,
     };
   }
   return work;

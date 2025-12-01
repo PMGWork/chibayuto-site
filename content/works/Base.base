@@ -1,0 +1,18 @@
+views:
+  - type: cards
+    name: View
+    filters:
+      and:
+        - file.folder == "/"
+        - file.fullname.contains(".md")
+    order:
+      - file.name
+      - tags
+      - endDate
+      - startDate
+    sort:
+      - property: endDate
+        direction: DESC
+    image: note.thumbnail
+    cardSize: 240
+    imageAspectRatio: 0.55

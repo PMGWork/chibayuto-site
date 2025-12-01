@@ -2,6 +2,7 @@
 tags:
 startDate:
 endDate:
+thumbnail:
 ---
 
 | Category | Name |

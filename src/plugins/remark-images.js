@@ -1,10 +1,14 @@
 import { visit } from 'unist-util-visit';
+import path from 'path';
 
 /**
  * Obsidianのリンク形式 ![[filename]] を標準のMarkdown ![](path) に変換するremarkプラグイン
  */
 export default function remarkImages() {
   return (tree, file) => {
+    const docName = file.path ? path.basename(file.path, path.extname(file.path)) : '';
+    console.error(`[DEBUG] Processing file: ${file.path}, docName: ${docName}`);
+
     visit(tree, 'text', (node, index, parent) => {
       const text = node.value;
 
@@ -34,7 +38,7 @@ export default function remarkImages() {
         }
 
         // 画像ノードを追加
-        const imagePath = `./assets/超すごい時間割/${filename}`;
+        const imagePath = `./assets/${docName}/${filename}`;
 
         parts.push({
           type: 'image',

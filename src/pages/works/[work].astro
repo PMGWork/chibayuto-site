@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import type { WorkWithThumbnail } from "../../types/work";
+import { getAssetFolderName } from "../../utils/work";
 
 // Components
 import Layout from "../../layouts/Layout.astro";
@@ -12,18 +13,18 @@ export async function getStaticPaths() {
   const rawWorks = await getCollection("works");
 
   const works: WorkWithThumbnail[] = rawWorks.map((work) => {
-    const { body } = work;
-    if (!body) return work;
+    const { thumbnail } = work.data;
+    if (!thumbnail) return work;
 
-    const obsidianImageMatch = body.match(/!\[\[([^\]]+)\]\]/);
+    const obsidianImageMatch = thumbnail.match(/!?\[\[([^\]]+)\]\]/);
     if (!obsidianImageMatch) return work;
 
     const filename = obsidianImageMatch[1];
-    const entryId = work.id.replace(/\.mdx?$/, "");
+    const assetFolderName = getAssetFolderName(work);
 
     return {
       ...work,
-      thumbnail: `/works/assets/${entryId}/${filename}`,
+      thumbnail: `/works/assets/${assetFolderName}/${filename}`,
     };
   });
 
