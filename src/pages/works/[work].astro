@@ -1,100 +1,93 @@
 ---
-import { loadQuery } from '../../sanity/lib/load-query';
+import { getCollection, render } from "astro:content";
 
 // Components
 import Layout from "../../layouts/Layout.astro";
-import WorkHeader from '../../components/work/WorkHeader.astro';
-import WorkCredits from '../../components/work/WorkCredits.astro';
-import WorkImage from '../../components/work/WorkImage.astro';
-import WorkContent from '../../components/work/WorkContent.tsx';
-
-// Types
-import type { SanityValues } from "../../../sanity.config";
-import type { ThumbnailValue } from "../../types";
-
-type Category = SanityValues['category'];
-type Work = Omit<SanityValues['work'], 'categories'> & {
-  categories?: Category[];
-  thumbnail?: ThumbnailValue;
-};
+import WorkHeader from "../../components/work/WorkHeader.astro";
+import WorkImage from "../../components/work/WorkImage.astro";
+import TableOfContents from "../../components/work/TableOfContents";
 
 export async function getStaticPaths() {
-  const { data: works } = await loadQuery<Work[]>({
-    query: `*[_type == "work"]`,
-  });
+  const rawWorks = await getCollection("works");
 
-  return works.map(({ slug }) => {
-    return {
-      params: {
-        work: slug.current,
-      },
-    };
-  });
+  // 各workのMarkdown本文から最初の画像を抽出してサムネイルを設定
+  const works = await Promise.all(
+    rawWorks.map(async (work) => {
+      // Markdown本文を取得
+      const { body } = work;
+
+      // bodyが存在しない場合はスキップ
+      if (!body) {
+        return work;
+      }
+
+      // Obsidian形式の画像リンクを抽出
+      const obsidianImageMatch = body.match(/!\[\[([^\]]+)\]\]/);
+
+      if (obsidianImageMatch) {
+        const filename = obsidianImageMatch[1];
+        const entryId = work.id.replace(/\.mdx?$/, "");
+
+        // 画像パスを構築 (publicパスとして)
+        return {
+          ...work,
+          data: {
+            ...work.data,
+            thumbnail: `/works/assets/${entryId}/${filename}`,
+          },
+        };
+      }
+
+      return work;
+    }),
+  );
+
+  return works.map((work) => ({
+    params: { work: work.id },
+    props: { work },
+  }));
 }
 
-const workQuery = `*[_type == "work" && slug.current == $slug][0]{
-  ...,
-  thumbnail {
-    ...,
-    asset-> {
-      ...,
-      metadata {
-        dimensions
-      }
-    }
-  },
-  categories[]-> {
-    ...,
-  },
-  content[]{
-    ...,
-    _type == "imageGroup" => {
-      images[]{
-        ...,
-        asset->{
-          ...,
-          metadata{
-            dimensions
-          }
-        }
-      }
-    }
-  }
-}`;
+const { work } = Astro.props as { work: any };
+const { Content, headings } = await render(work);
 
-const { work: slug } = Astro.params;
-const { data: work } = await loadQuery<Work>({
-  query: workQuery,
-  params: { slug }
-});
+const tocHeadings = headings.map((h) => ({
+  id: h.slug,
+  text: h.text,
+  level: h.depth,
+}));
 
-if (!work) {
-  return Astro.redirect('/404');
-}
+const formattedStartDate = work.data.startDate.toISOString();
+const formattedEndDate = work.data.endDate.toISOString();
 ---
 
-<Layout
-  title={work.name + " | Chiba Yuto"}
->
-  <div
-    class="
-      text-body-sm sm:text-body-base tracking-wider
-    "
-  >
+<Layout title={work.id + " | Chiba Yuto"}>
+  <div class="text-body-sm sm:text-body-base tracking-wider">
     <main
-      class="
-        flex flex-col items-center sm:items-start
-        px-5 pt-28 pb-4 sm:px-20 sm:pt-40 sm:pb-10 max-w-dp mx-auto
-      "
+      class="flex flex-col items-center sm:items-start
+        px-5 pt-28 pb-4 sm:px-20 sm:pt-40 sm:pb-10 max-w-dp mx-auto"
     >
-      <WorkHeader name={work.name} startDate={work.startDate} endDate={work.endDate}/>
-      <WorkImage className="mt-8 sm:mt-12" name={work.name} thumbnail={work.thumbnail}/>
-      <WorkCredits className="mt-4" credits={work.credits} link={work.link} />
+      <WorkHeader
+        name={work.id}
+        startDate={formattedStartDate}
+        endDate={formattedEndDate}
+      />
+      <WorkImage
+        className="mt-8 sm:mt-12"
+        name={work.id}
+        thumbnail={work.data.thumbnail}
+      />
 
-      <div class="w-full mt-12 sm:mt-20">
-        {work.content && (
-          <WorkContent client:visible content={work.content} />
-        )}
+      <div class="w-full mt-12 sm:mt-20 flex gap-16">
+        <div
+          class="flex-1 flex flex-col min-w-0 gap-4 prose prose-sm sm:prose-base max-w-none"
+        >
+          <Content />
+        </div>
+
+        <div class="hidden lg:block w-64 flex-shrink-0">
+          <TableOfContents client:load headings={tocHeadings} />
+        </div>
       </div>
     </main>
   </div>

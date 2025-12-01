@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --color-background: #f8f8f8;
@@ -43,7 +44,49 @@ h1, h2, h3, h4, h5, h6 {
   font-feature-settings: "palt";
 }
 
-/* スクロールバーを隠す */
+/* Prose */
+.prose p {
+  @apply text-body-base text-foreground mb-6;
+}
+
+.prose h3 {
+  @apply text-xl sm:text-2xl font-medium mt-6 mb-2 w-full;
+}
+
+.prose img {
+  @apply m-0 rounded-md;
+}
+
+/* Table */
+.prose table {
+  @apply w-fit bg-gray-50 border border-gray-200 rounded-lg py-4 px-6 border-separate border-spacing-0 mb-8;
+}
+
+.prose table thead {
+  @apply hidden;
+}
+
+.prose table tbody {
+  @apply flex flex-col gap-4 sm:flex-row sm:gap-10;
+}
+
+.prose table tbody tr {
+  @apply flex flex-col border-none;
+}
+
+.prose table tbody tr td {
+  @apply p-0 border-none bg-transparent;
+}
+
+.prose table tbody tr td:first-child {
+  @apply font-semibold text-foreground mb-1;
+}
+
+.prose table tbody tr td:last-child {
+  @apply text-gray-500;
+}
+
+/* Hide Scrollbar */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;

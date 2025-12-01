@@ -1,20 +1,22 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
-import type { SanityValues } from '../../../sanity.config';
-import type { ThumbnailValue } from '../../types';
+import { useState, useRef } from 'react';
 
 import WorkCard from './WorkCard';
 import CategoryButtons from './CategoryButtons';
 
-type Category = SanityValues['category'];
-type Work = Omit<SanityValues['work'], 'categories'> & {
-  categories?: Category[];
-  thumbnail?: ThumbnailValue;
-};
+interface Work {
+  id: string;
+  data: {
+    thumbnail?: any;
+    tags?: string[];
+    startDate: Date;
+    endDate: Date;
+  };
+}
 
 interface WorkListProps {
-  initialCategories: Category[];
+  initialTags: string[];
   initialWorks: Work[];
 }
 
@@ -57,15 +59,14 @@ function WorkItem({ work, index }: WorkItemProps) {
   );
 }
 
-export default function WorkList({ initialCategories, initialWorks }: WorkListProps) {
-  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+export default function WorkList({ initialTags, initialWorks }: WorkListProps) {
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
-  const filteredWorks: Work[] = selectedCategory
+  const filteredWorks: Work[] = selectedTag
     ? initialWorks.filter((work: Work) =>
-        Array.isArray(work.categories) &&
-        work.categories.some((category: Category) =>
-          category.slug?.current === selectedCategory?.slug?.current)
-      )
+      work.data.tags?.some((tag: string) =>
+        tag === selectedTag)
+    )
     : initialWorks;
 
   return (
@@ -73,9 +74,9 @@ export default function WorkList({ initialCategories, initialWorks }: WorkListPr
       {/* モバイル・タブレット用：上部にカテゴリボタン */}
       <div className="lg:hidden">
         <CategoryButtons
-          categories={initialCategories}
-          selectedCategory={selectedCategory}
-          onSelectCategory={setSelectedCategory}
+          tags={initialTags}
+          selectedTag={selectedTag}
+          onSelectTag={setSelectedTag}
         />
       </div>
 
@@ -84,7 +85,7 @@ export default function WorkList({ initialCategories, initialWorks }: WorkListPr
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredWorks.map((work, index) => (
               <WorkItem
-                key={`${selectedCategory?.slug?.current || 'all'}-${work.slug?.current || index}`}
+                key={`${selectedTag || 'all'}-${work.id || index}`}
                 work={work}
                 index={index}
               />
@@ -96,9 +97,9 @@ export default function WorkList({ initialCategories, initialWorks }: WorkListPr
         <div className="hidden lg:block lg:w-32">
           <div className="lg:sticky lg:top-40 lg:ml-auto">
             <CategoryButtons
-              categories={initialCategories}
-              selectedCategory={selectedCategory}
-              onSelectCategory={setSelectedCategory}
+              tags={initialTags}
+              selectedTag={selectedTag}
+              onSelectTag={setSelectedTag}
             />
           </div>
         </div>

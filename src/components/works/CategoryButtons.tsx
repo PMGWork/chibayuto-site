@@ -1,19 +1,15 @@
 "use client";
 
-import type { SanityValues } from '../../../sanity.config';
-
-type Category = SanityValues['category'];
-
 interface CategoryButtonsProps {
-  categories: Category[];
-  selectedCategory: Category | null;
-  onSelectCategory: (category: Category | null) => void;
+  tags: string[];
+  selectedTag: string | null;
+  onSelectTag: (tag: string | null) => void;
 };
 
 export default function CategoryButtons({
-  categories,
-  selectedCategory,
-  onSelectCategory,
+  tags,
+  selectedTag,
+  onSelectTag,
 }: CategoryButtonsProps) {
   // ボタンのクラスを取得（デスクトップ用）
   const getDesktopButtonClass = (isSelected: boolean) => {
@@ -54,18 +50,18 @@ export default function CategoryButtons({
       <div className="lg:hidden">
         <div className="flex flex-wrap gap-2">
           <button
-            className={getMobileButtonClass(selectedCategory === null)}
-            onClick={() => onSelectCategory(null)}
+            className={getMobileButtonClass(selectedTag === null)}
+            onClick={() => onSelectTag(null)}
           >
             すべて
           </button>
-          {categories.map((category, index) => (
+          {tags.map((tag, index) => (
             <button
               key={index}
-              className={getMobileButtonClass(selectedCategory?.name === category.name)}
-              onClick={() => onSelectCategory(category)}
+              className={getMobileButtonClass(selectedTag === tag)}
+              onClick={() => onSelectTag(tag)}
             >
-              {category.name}
+              {tag}
             </button>
           ))}
         </div>
@@ -74,24 +70,24 @@ export default function CategoryButtons({
       {/* デスクトップ用 */}
       <div className="hidden lg:flex flex-col gap-2 items-end">
         <div className="flex gap-2 items-center justify-end group">
-          <div className={getLineClass(selectedCategory === null)}>
+          <div className={getLineClass(selectedTag === null)}>
           </div>
           <button
-            className={getDesktopButtonClass(selectedCategory === null)}
-            onClick={() => onSelectCategory(null)}
+            className={getDesktopButtonClass(selectedTag === null)}
+            onClick={() => onSelectTag(null)}
           >
             すべて
           </button>
         </div>
-        {categories.map((category, index) => (
+        {tags.map((tag, index) => (
           <div key={index} className="flex gap-2 items-center justify-end group">
-            <div className={getLineClass(selectedCategory?.name === category.name)}>
+            <div className={getLineClass(selectedTag === tag)}>
             </div>
             <button
-              className={getDesktopButtonClass(selectedCategory?.name === category.name)}
-              onClick={() => onSelectCategory(category)}
+              className={getDesktopButtonClass(selectedTag === tag)}
+              onClick={() => onSelectTag(tag)}
             >
-              {category.name}
+              {tag}
             </button>
           </div>
         ))}

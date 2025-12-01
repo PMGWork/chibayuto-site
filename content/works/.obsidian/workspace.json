@@ -1,0 +1,201 @@
+{
+  "main": {
+    "id": "6f9be67a0daa50e1",
+    "type": "split",
+    "children": [
+      {
+        "id": "428d575d10085d75",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a0e2bb059b4be181",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "超すごい時間割.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "超すごい時間割"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "3cf18ac34065b438",
+    "type": "split",
+    "children": [
+      {
+        "id": "236f81b6d5cc73a8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f22a92b8304345a7",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "ファイルエクスプローラ"
+            }
+          },
+          {
+            "id": "e319df9ae1b05b16",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "検索"
+            }
+          },
+          {
+            "id": "adcec838acaa6dd9",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "ブックマーク"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "d12904f099493b79",
+    "type": "split",
+    "children": [
+      {
+        "id": "d2f4640a16f5544c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2ad324c692dce703",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "sample-work.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "sample-workへのバックリンク"
+            }
+          },
+          {
+            "id": "cf68f1a077cb1e35",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "sample-work.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "sample-workからのアウトゴーイングリンク"
+            }
+          },
+          {
+            "id": "11ce269d725f0e18",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "タグ"
+            }
+          },
+          {
+            "id": "0da4200e37969d1c",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "すべてのプロパティ"
+            }
+          },
+          {
+            "id": "4b589fd70e330ef6",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "sample-work.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "sample-workのアウトライン"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:クイックスイッチャーを開く": false,
+      "graph:グラフビューを開く": false,
+      "canvas:新規キャンバスを作成": true,
+      "daily-notes:今日のデイリーノートを開く": true,
+      "templates:テンプレートを挿入": false,
+      "command-palette:コマンドパレットを開く": false,
+      "bases:Create new base": true
+    }
+  },
+  "active": "a0e2bb059b4be181",
+  "lastOpenFiles": [
+    "超すごい時間割.md",
+    "assets/超すごい時間割/file-20251201082725834.png",
+    "assets/超すごい時間割/file-20251201071151293.png",
+    "assets/超すごい時間割/file-20251201071151282.png",
+    "超軽工業プロモーションビデオ.md",
+    "超すごい時間割 copy.md",
+    "assets/超すごい時間割/c582ef4cbfbba40b1d5ec26c1cd53d04c510ce88-800x600.png",
+    "assets/超すごい時間割/d0249b3c5f3fe37859f3ddb5c03034bfb4777598-800x600.png",
+    "assets/超すごい時間割",
+    "assets",
+    "test-credits.mdx",
+    "sample-work.md"
+  ]
+}
