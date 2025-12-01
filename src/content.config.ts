@@ -11,7 +11,7 @@ const works = defineCollection({
     base: path.resolve(__dirname, '../content/works')
   }),
   schema: z.object({
-    tags: z.array(z.string()).optional(),
+    tags: z.array(z.string()).optional().nullable(),
     startDate: z.coerce.date(),
     endDate: z.coerce.date(),
   }),
