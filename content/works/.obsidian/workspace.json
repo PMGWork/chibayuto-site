@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "超すごい時間割.md",
+                "file": "template/template.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "超すごい時間割"
+              "title": "template"
             }
           }
         ]
@@ -183,9 +183,13 @@
       "bases:Create new base": true
     }
   },
-  "active": "a0e2bb059b4be181",
+  "active": "f22a92b8304345a7",
   "lastOpenFiles": [
+    "無題のファイル.md",
+    "template/template.md",
     "超すごい時間割.md",
+    "template/work.md",
+    "template",
     "assets/超すごい時間割/file-20251201082725834.png",
     "assets/超すごい時間割/file-20251201071151293.png",
     "assets/超すごい時間割/file-20251201071151282.png",

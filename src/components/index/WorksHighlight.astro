@@ -1,8 +1,5 @@
 ---
 import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
-import type { ImageMetadata } from "astro";
-
 const rawWorks = await getCollection("works");
 
 const worksWithThumbnails = await Promise.all(
@@ -15,10 +12,7 @@ const worksWithThumbnails = await Promise.all(
       const entryId = work.id.replace(/\.mdx?$/, "");
       return {
         ...work,
-        data: {
-          ...work.data,
-          thumbnail: `/works/assets/${entryId}/${filename}`,
-        },
+        thumbnail: `/works/assets/${entryId}/${filename}`,
       };
     }
     return work;
@@ -28,25 +22,6 @@ const worksWithThumbnails = await Promise.all(
 const works = worksWithThumbnails.sort(
   (a, b) => b.data.endDate.getTime() - a.data.endDate.getTime(),
 );
-
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/images/*.{jpeg,jpg,png,gif}",
-  { eager: true },
-);
-
-const resolveImage = (thumbnail: any) => {
-  if (typeof thumbnail === "string") {
-    if (thumbnail.startsWith("/")) {
-      return thumbnail;
-    }
-    const filename = thumbnail.split("/").pop();
-    if (filename) {
-      const key = `/src/assets/images/${filename}`;
-      return images[key]?.default;
-    }
-  }
-  return thumbnail;
-};
 ---
 
 <div class="w-full overflow-x-hidden">
@@ -54,11 +29,11 @@ const resolveImage = (thumbnail: any) => {
     <div class="animate-scroll flex">
       {
         works.map((work: any) => {
-          const imageSrc = resolveImage(work.data.thumbnail);
+          const imageSrc = work.thumbnail;
           return (
             <div class="flex flex-col justify-end gap-1 items-end">
               {imageSrc &&
-                (typeof imageSrc === "string" ? (
+                (
                   <img
                     src={imageSrc}
                     alt={work.id || "作品のサムネイル画像"}
@@ -67,16 +42,7 @@ const resolveImage = (thumbnail: any) => {
                     decoding="async"
                     loading="eager"
                   />
-                ) : (
-                  <Image
-                    src={imageSrc}
-                    alt={work.id || "作品のサムネイル画像"}
-                    class="w-auto h-[350px] object-cover"
-                    height={350}
-                    decoding="async"
-                    loading="eager"
-                  />
-                ))}
+                )}
               <div class="text-gray-500 text-[10px] text-right px-1">
                 {work.id}
               </div>

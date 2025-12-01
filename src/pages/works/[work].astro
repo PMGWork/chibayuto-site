@@ -10,37 +10,22 @@ import TableOfContents from "../../components/work/TableOfContents";
 export async function getStaticPaths() {
   const rawWorks = await getCollection("works");
 
-  // 各workのMarkdown本文から最初の画像を抽出してサムネイルを設定
-  const works = await Promise.all(
-    rawWorks.map(async (work) => {
-      // Markdown本文を取得
-      const { body } = work;
+  // 各workのサムネイルを設定
+  const works = rawWorks.map((work) => {
+    const { body } = work;
+    if (!body) return work;
 
-      // bodyが存在しない場合はスキップ
-      if (!body) {
-        return work;
-      }
+    const obsidianImageMatch = body.match(/!\[\[([^\]]+)\]\]/);
+    if (!obsidianImageMatch) return work;
 
-      // Obsidian形式の画像リンクを抽出
-      const obsidianImageMatch = body.match(/!\[\[([^\]]+)\]\]/);
+    const filename = obsidianImageMatch[1];
+    const entryId = work.id.replace(/\.mdx?$/, "");
 
-      if (obsidianImageMatch) {
-        const filename = obsidianImageMatch[1];
-        const entryId = work.id.replace(/\.mdx?$/, "");
-
-        // 画像パスを構築 (publicパスとして)
-        return {
-          ...work,
-          data: {
-            ...work.data,
-            thumbnail: `/works/assets/${entryId}/${filename}`,
-          },
-        };
-      }
-
-      return work;
-    }),
-  );
+    return {
+      ...work,
+      thumbnail: `/works/assets/${entryId}/${filename}`,
+    };
+  });
 
   return works.map((work) => ({
     params: { work: work.id },
@@ -75,7 +60,7 @@ const formattedEndDate = work.data.endDate.toISOString();
       <WorkImage
         className="mt-8 sm:mt-12"
         name={work.id}
-        thumbnail={work.data.thumbnail}
+        thumbnail={work.thumbnail}
       />
 
       <div class="w-full mt-12 sm:mt-20 flex gap-16">

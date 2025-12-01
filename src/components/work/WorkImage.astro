@@ -1,57 +1,22 @@
 ---
-import { Image } from "astro:assets";
-import type { ImageMetadata } from "astro";
-
 interface Props {
   className?: string;
   name: string;
-  thumbnail?: ImageMetadata | string;
+  thumbnail?: string;
 }
 
 const { className = "", name, thumbnail } = Astro.props;
 
-let imageSrc = thumbnail;
-let isPublicPath = false;
-
-if (typeof thumbnail === "string") {
-  // /で始まる場合は/publicディレクトリのパスとして扱う
-  if (thumbnail.startsWith("/")) {
-    isPublicPath = true;
-  } else {
-    // それ以外は/src/assets/imagesから探す
-    const images = import.meta.glob<{ default: ImageMetadata }>(
-      "/src/assets/images/*.{jpeg,jpg,png,gif}",
-      { eager: true },
-    );
-
-    const filename = thumbnail.split("/").pop();
-    if (filename) {
-      const key = `/src/assets/images/${filename}`;
-      if (images[key]) {
-        imageSrc = images[key].default;
-      }
-    }
-  }
-}
+const imageSrc = typeof thumbnail === "string" ? thumbnail : undefined;
 ---
 
 <div class={`w-full ${className}`}>
   {
-    isPublicPath && typeof imageSrc === "string" ? (
+    imageSrc ? (
       <img
         class="rounded-lg border-gray-200 border w-full h-auto"
         src={imageSrc}
         alt={name}
-        decoding="async"
-        loading="eager"
-      />
-    ) : imageSrc && typeof imageSrc !== "string" ? (
-      <Image
-        class="rounded-lg border-gray-200 border w-full h-auto"
-        src={imageSrc}
-        alt={name}
-        width={1200}
-        height={630}
         decoding="async"
         loading="eager"
       />

@@ -1,47 +1,28 @@
 ---
 import { getCollection } from "astro:content";
-import path from "path";
-import { fileURLToPath } from "url";
 
 // Components
 import WorkList from "../components/works/WorkList.tsx";
 import Layout from "../layouts/Layout.astro";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
 const rawWorks = await getCollection("works");
 
-// 各workのMarkdown本文から最初の画像を抽出してサムネイルを設定
-const worksWithThumbnails = await Promise.all(
-  rawWorks.map(async (work) => {
-    // Markdown本文を取得
-    const { body } = work;
+// 各workのサムネイルを設定
+const worksWithThumbnails = rawWorks.map((work) => {
+  const { body } = work;
+  if (!body) return work;
 
-    // bodyが存在しない場合はスキップ
-    if (!body) {
-      return work;
-    }
+  const obsidianImageMatch = body.match(/!\[\[([^\]]+)\]\]/);
+  if (!obsidianImageMatch) return work;
 
-    // Obsidian形式の画像リンクを抽出
-    const obsidianImageMatch = body.match(/!\[\[([^\]]+)\]\]/);
+  const filename = obsidianImageMatch[1];
+  const entryId = work.id.replace(/\.mdx?$/, "");
 
-    if (obsidianImageMatch) {
-      const filename = obsidianImageMatch[1];
-      const entryId = work.id.replace(/\.mdx?$/, "");
-
-      // 画像パスを構築 (publicパスとして)
-      return {
-        ...work,
-        data: {
-          ...work.data,
-          thumbnail: `/works/assets/${entryId}/${filename}`,
-        },
-      };
-    }
-
-    return work;
-  }),
-);
+  return {
+    ...work,
+    thumbnail: `/works/assets/${entryId}/${filename}`,
+  };
+});
 
 const works = worksWithThumbnails.sort(
   (a, b) => b.data.endDate.getTime() - a.data.endDate.getTime(),

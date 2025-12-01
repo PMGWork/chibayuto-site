@@ -7,8 +7,8 @@ import CategoryButtons from './CategoryButtons';
 
 interface Work {
   id: string;
+  thumbnail?: string;
   data: {
-    thumbnail?: any;
     tags?: string[];
     startDate: Date;
     endDate: Date;

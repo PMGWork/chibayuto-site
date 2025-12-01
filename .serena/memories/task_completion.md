@@ -1,0 +1,5 @@
+- 変更後は可能なら `npm run build` でビルド確認（テスト・lint用スクリプトは未定義）。
+- 追加チェックが必要なら `npm run astro -- check` を検討。
+- 新しい依存追加時は `package-lock.json` もコミット対象に含める。
+- 画像やコンテンツ追加時は `content/works/assets/...` に配置し、Markdown から参照。
+- 作業内容・影響範囲・実行したコマンドを簡潔に共有。
