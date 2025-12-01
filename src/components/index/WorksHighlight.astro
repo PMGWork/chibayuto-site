@@ -1,11 +1,11 @@
 ---
 import { getCollection } from "astro:content";
-import type { WorkWithThumbnail } from "../../types/work";
+import type { Work } from "../../types/work";
 import { getAssetFolderName } from "../../utils/work";
 
 const rawWorks = await getCollection("works");
 
-const worksWithThumbnails: WorkWithThumbnail[] = rawWorks.map((work) => {
+const worksWithThumbnails: Work[] = rawWorks.map((work) => {
   const { body } = work;
   if (!body) return work;
   const obsidianImageMatch = body.match(/!\[\[([^\]]+)\]\]/);
@@ -29,21 +29,20 @@ const works = worksWithThumbnails.sort(
   <div class="flex w-[10000px]">
     <div class="animate-scroll flex">
       {
-        works.map((work: WorkWithThumbnail) => {
+        works.map((work: Work) => {
           const imageSrc = work.thumbnail;
           return (
             <div class="flex flex-col justify-end gap-1 items-end">
-              {imageSrc &&
-                (
-                  <img
-                    src={imageSrc}
-                    alt={work.id || "作品のサムネイル画像"}
-                    class="w-auto h-[350px] object-cover"
-                    height={350}
-                    decoding="async"
-                    loading="eager"
-                  />
-                )}
+              {imageSrc && (
+                <img
+                  src={imageSrc}
+                  alt={work.id || "作品のサムネイル画像"}
+                  class="w-auto h-[350px] object-cover"
+                  height={350}
+                  decoding="async"
+                  loading="eager"
+                />
+              )}
               <div class="text-gray-500 text-[10px] text-right px-1">
                 {work.id}
               </div>

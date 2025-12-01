@@ -1,6 +1,7 @@
 ---
+import path from "path";
 import { getCollection, render } from "astro:content";
-import type { WorkWithThumbnail } from "../../types/work";
+import type { Work } from "../../types/work";
 import { getAssetFolderName } from "../../utils/work";
 
 // Components
@@ -12,7 +13,7 @@ import TableOfContents from "../../components/work/TableOfContents";
 export async function getStaticPaths() {
   const rawWorks = await getCollection("works");
 
-  const works: WorkWithThumbnail[] = rawWorks.map((work) => {
+  const works: Work[] = rawWorks.map((work) => {
     const { thumbnail } = work.data;
     if (!thumbnail) return work;
 
@@ -28,14 +29,19 @@ export async function getStaticPaths() {
     };
   });
 
-  return works.map((work: WorkWithThumbnail) => ({
+  return works.map((work: Work) => ({
     params: { work: work.id },
     props: { work },
   }));
 }
 
-const { work } = Astro.props as { work: WorkWithThumbnail };
+const { work } = Astro.props as { work: Work };
 const { Content, headings } = await render(work);
+
+// Derive title from filePath to preserve casing
+const title = work.filePath
+  ? path.basename(work.filePath, path.extname(work.filePath))
+  : work.id;
 
 const tocHeadings = headings.map((h) => ({
   id: h.slug,
@@ -47,14 +53,14 @@ const formattedStartDate = work.data.startDate.toISOString();
 const formattedEndDate = work.data.endDate.toISOString();
 ---
 
-<Layout title={work.id + " | Chiba Yuto"}>
+<Layout title={title + " | Chiba Yuto"}>
   <div class="text-body-sm sm:text-body-base tracking-wider">
     <main
       class="flex flex-col items-center sm:items-start
         px-5 pt-28 pb-4 sm:px-20 sm:pt-40 sm:pb-10 max-w-dp mx-auto"
     >
       <WorkHeader
-        name={work.id}
+        name={title}
         startDate={formattedStartDate}
         endDate={formattedEndDate}
       />

@@ -1,6 +1,6 @@
-import type { WorkWithThumbnail } from "../types/work";
+import type { Work } from "../types/work";
 
-export const getAssetFolderName = (work: WorkWithThumbnail) => {
+export const getAssetFolderName = (work: Work) => {
   if (work.filePath) {
     const match = work.filePath.match(/([^/]+)\.(mdx?)$/i);
     if (match?.[1]) {

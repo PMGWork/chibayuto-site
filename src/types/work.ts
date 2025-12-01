@@ -1,4 +1,4 @@
 import type { CollectionEntry } from "astro:content";
 
 export type WorkEntry = CollectionEntry<"works">;
-export type WorkWithThumbnail = WorkEntry & { thumbnail?: string };
+export type Work = WorkEntry & { thumbnail?: string; title?: string };

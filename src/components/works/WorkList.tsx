@@ -5,15 +5,15 @@ import { useState, useRef } from 'react';
 import WorkCard from './WorkCard';
 import CategoryButtons from './CategoryButtons';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
-import type { WorkWithThumbnail } from '../../types/work';
+import type { Work } from '../../types/work';
 
 interface WorkListProps {
   initialTags: string[];
-  initialWorks: WorkWithThumbnail[];
+  initialWorks: Work[];
 }
 
 interface WorkItemProps {
-  work: WorkWithThumbnail;
+  work: Work;
   index: number;
 }
 
@@ -52,8 +52,8 @@ function WorkItem({ work, index }: WorkItemProps) {
 export default function WorkList({ initialTags, initialWorks }: WorkListProps) {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
-  const filteredWorks: WorkWithThumbnail[] = selectedTag
-    ? initialWorks.filter((work: WorkWithThumbnail) =>
+  const filteredWorks: Work[] = selectedTag
+    ? initialWorks.filter((work: Work) =>
       work.data.tags?.some((tag: string) =>
         tag === selectedTag)
     )

@@ -1,12 +1,13 @@
 "use client";
 
-import type { WorkWithThumbnail } from "../../types/work";
+import type { Work } from "../../types/work";
 
-interface WorkCardProps {
-  work: WorkWithThumbnail;
+// Props
+interface Props {
+  work: Work;
 }
 
-export default function WorkCard({ work }: WorkCardProps) {
+export default function WorkCard({ work }: Props) {
   const workTags = work.data.tags || [];
   const thumbnail = work.thumbnail;
 
@@ -30,7 +31,7 @@ export default function WorkCard({ work }: WorkCardProps) {
         </div>
       </a>
       <div className="flex flex-col gap-2">
-        <h3 className="text-xl">{work.id}</h3>
+        <h3 className="text-xl">{work.title || work.id}</h3>
         <div className='flex gap-2'>
           {workTags.map((tag, tagIndex) => (
             <span key={tagIndex} className="bg-gray-50 rounded-lg border-gray-200 border px-2 py-1 text-xs font-medium">

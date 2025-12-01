@@ -26,18 +26,16 @@
             "id": "4d0cfb38f8aa3e06",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "bases",
               "state": {
-                "file": "超すごい時間割.md",
-                "mode": "source",
-                "source": false
+                "file": "Base.base",
+                "viewName": "View"
               },
-              "icon": "lucide-file",
-              "title": "超すごい時間割"
+              "icon": "lucide-layout-grid",
+              "title": "Base"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -110,7 +108,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "sample-work.md",
+                "file": "Base.base",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +118,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "sample-workへのバックリンク"
+              "title": "Baseへのバックリンク"
             }
           },
           {
@@ -129,12 +127,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "sample-work.md",
+                "file": "Base.base",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "sample-workからのアウトゴーイングリンク"
+              "title": "Baseからのアウトゴーイングリンク"
             }
           },
           {
@@ -172,16 +170,17 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "sample-work.md",
+                "file": "Base.base",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "sample-workのアウトライン"
+              "title": "Baseのアウトライン"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -199,14 +198,14 @@
       "bases:Create new base": false
     }
   },
-  "active": "4d0cfb38f8aa3e06",
+  "active": "0fb62ec33776cf11",
   "lastOpenFiles": [
-    "Base.base",
-    "超すごい時間割.md",
     "M→Fes2024.md",
+    "超すごい時間割.md",
+    "渡邊恵太研究室プロモーションビデオ.md",
+    "Base.base",
     "assets/M→Fes2024/file-20251201190547896.png",
     "assets/M→Fes2024/file-20251201190547899 1.png",
-    "渡邊恵太研究室プロモーションビデオ.md",
     "assets/M→Fes2024/file-20251201190547900.png",
     "assets/M→Fes2024/file-20251201190547897.png",
     "assets/M→Fes2024/file-20251201190547899.png",
