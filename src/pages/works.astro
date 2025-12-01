@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import type { WorkWithThumbnail } from "../types/work";
 
 // Components
 import WorkList from "../components/works/WorkList.tsx";
@@ -7,8 +8,7 @@ import Layout from "../layouts/Layout.astro";
 
 const rawWorks = await getCollection("works");
 
-// 各workのサムネイルを設定
-const worksWithThumbnails = rawWorks.map((work) => {
+const worksWithThumbnails: WorkWithThumbnail[] = rawWorks.map((work) => {
   const { body } = work;
   if (!body) return work;
 
@@ -51,7 +51,7 @@ const meta = {
       <WorkList
         client:visible
         initialTags={allTags}
-        initialWorks={works as any}
+        initialWorks={works}
       />
     </main>
   </div>

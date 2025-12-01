@@ -1,23 +1,23 @@
 ---
 import { getCollection } from "astro:content";
+import type { WorkWithThumbnail } from "../../types/work";
+
 const rawWorks = await getCollection("works");
 
-const worksWithThumbnails = await Promise.all(
-  rawWorks.map(async (work) => {
-    const { body } = work;
-    if (!body) return work;
-    const obsidianImageMatch = body.match(/!\[\[([^\]]+)\]\]/);
-    if (obsidianImageMatch) {
-      const filename = obsidianImageMatch[1];
-      const entryId = work.id.replace(/\.mdx?$/, "");
-      return {
-        ...work,
-        thumbnail: `/works/assets/${entryId}/${filename}`,
-      };
-    }
-    return work;
-  }),
-);
+const worksWithThumbnails: WorkWithThumbnail[] = rawWorks.map((work) => {
+  const { body } = work;
+  if (!body) return work;
+  const obsidianImageMatch = body.match(/!\[\[([^\]]+)\]\]/);
+  if (obsidianImageMatch) {
+    const filename = obsidianImageMatch[1];
+    const entryId = work.id.replace(/\.mdx?$/, "");
+    return {
+      ...work,
+      thumbnail: `/works/assets/${entryId}/${filename}`,
+    };
+  }
+  return work;
+});
 
 const works = worksWithThumbnails.sort(
   (a, b) => b.data.endDate.getTime() - a.data.endDate.getTime(),
@@ -28,7 +28,7 @@ const works = worksWithThumbnails.sort(
   <div class="flex w-[10000px]">
     <div class="animate-scroll flex">
       {
-        works.map((work: any) => {
+        works.map((work: WorkWithThumbnail) => {
           const imageSrc = work.thumbnail;
           return (
             <div class="flex flex-col justify-end gap-1 items-end">

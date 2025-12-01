@@ -1,15 +1,9 @@
 "use client";
 
-interface Work {
-  id: string;
-  thumbnail?: string;
-  data: {
-    tags?: string[];
-  };
-}
+import type { WorkWithThumbnail } from "../../types/work";
 
 interface WorkCardProps {
-  work: Work;
+  work: WorkWithThumbnail;
 }
 
 export default function WorkCard({ work }: WorkCardProps) {

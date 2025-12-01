@@ -8,7 +8,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 import vercel from '@astrojs/vercel';
 
-import remarkObsidianImages from './src/plugins/remark-obsidian-images.js';
+import remarkRemoveFirstImage from './src/plugins/remark-remove-first-image.js';
+import remarkImages from './src/plugins/remark-images.js';
 import rehypeImageGrid from './src/plugins/rehype-image-grid.js';
 
 // https://astro.build/config
@@ -18,7 +19,7 @@ export default defineConfig({
     react(),
   ],
   markdown: {
-    remarkPlugins: [remarkObsidianImages],
+    remarkPlugins: [remarkRemoveFirstImage, remarkImages],
     rehypePlugins: [rehypeImageGrid],
   },
   vite: {

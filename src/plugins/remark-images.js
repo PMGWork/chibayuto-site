@@ -3,7 +3,7 @@ import { visit } from 'unist-util-visit';
 /**
  * Obsidianのリンク形式 ![[filename]] を標準のMarkdown ![](path) に変換するremarkプラグイン
  */
-export default function remarkObsidianImages() {
+export default function remarkImages() {
   return (tree, file) => {
     visit(tree, 'text', (node, index, parent) => {
       const text = node.value;

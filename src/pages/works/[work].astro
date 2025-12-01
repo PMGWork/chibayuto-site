@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
+import type { WorkWithThumbnail } from "../../types/work";
 
 // Components
 import Layout from "../../layouts/Layout.astro";
@@ -10,8 +11,7 @@ import TableOfContents from "../../components/work/TableOfContents";
 export async function getStaticPaths() {
   const rawWorks = await getCollection("works");
 
-  // 各workのサムネイルを設定
-  const works = rawWorks.map((work) => {
+  const works: WorkWithThumbnail[] = rawWorks.map((work) => {
     const { body } = work;
     if (!body) return work;
 
@@ -27,13 +27,13 @@ export async function getStaticPaths() {
     };
   });
 
-  return works.map((work) => ({
+  return works.map((work: WorkWithThumbnail) => ({
     params: { work: work.id },
     props: { work },
   }));
 }
 
-const { work } = Astro.props as { work: any };
+const { work } = Astro.props as { work: WorkWithThumbnail };
 const { Content, headings } = await render(work);
 
 const tocHeadings = headings.map((h) => ({
