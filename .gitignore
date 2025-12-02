@@ -29,3 +29,9 @@ pnpm-debug.log*
 
 # sanity
 .sanity/
+
+# obsidian
+# Obsidian
+**/.obsidian/workspace.json
+**/.obsidian/workspace
+**/.obsidian/cache
