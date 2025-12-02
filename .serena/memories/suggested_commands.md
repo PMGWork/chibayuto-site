@@ -1,6 +1,0 @@
-- 開発サーバー: `npm run dev`
-- 本番ビルド: `npm run build`
-- プレビュー（ビルド後）: `npm run preview`
-- 本番向けビルド（previewフラグ付き）: `npm run build:preview`
-- Astro CLI 汎用実行（例:型/リンクチェックなど）: `npm run astro -- <command>`
-- 依存関係インストール: `npm install`

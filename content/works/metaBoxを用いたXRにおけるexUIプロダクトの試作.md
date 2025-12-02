@@ -1,8 +1,9 @@
 ---
+slug: exuixr
+thumbnail: "[[file-20251201211727344.jpeg]]"
+createdAt: 2025-03-01
 tags:
   - プログラミング
-createdAt: 2025-03-01
-thumbnail: "[[file-20251201211727344.jpeg]]"
 ---
 
 | Category   | Name                     |

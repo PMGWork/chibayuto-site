@@ -8,21 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "0fb62ec33776cf11",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "bases",
-              "state": {
-                "file": "Base.base",
-                "viewName": "View"
-              },
-              "pinned": true,
-              "icon": "lucide-layout-grid",
-              "title": "Base"
-            }
-          },
-          {
             "id": "ce66ca8a445af15b",
             "type": "leaf",
             "state": {
@@ -93,21 +78,21 @@
             }
           },
           {
-            "id": "19374f52293e839a",
+            "id": "fcac84c25d522d3e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "M→Fes2023 オープニング映像.md",
+                "file": "metaBoxを用いたXRにおけるexUIプロダクトの試作.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "M→Fes2023 オープニング映像"
+              "title": "metaBoxを用いたXRにおけるexUIプロダクトの試作"
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -270,16 +255,26 @@
       "bases:Create new base": false
     }
   },
-  "active": "19374f52293e839a",
+  "active": "fcac84c25d522d3e",
   "lastOpenFiles": [
-    "assets/M→Fes2023 オープニング映像/file-20251201211754354.png",
-    "Base.base",
+    "M→Fes2024.md",
     "metaBoxを用いたXRにおけるexUIプロダクトの試作.md",
+    "template/template.md",
+    "無題のファイル.md",
+    "M→Fes2023 オープニング映像.md",
+    "MVGenerator.md",
+    "OPENING.md",
+    "Pixel Website.md",
+    "RecommendMap.md",
+    "超すごい時間割.md",
+    "渡邊恵太研究室プロモーションビデオ.md",
+    "拝啓、十年前の君へ.md",
+    "Base.base",
+    "assets/M→Fes2023 オープニング映像/file-20251201211754354.png",
     "assets/metaBoxを用いたXRにおけるexUIプロダクトの試作/file-20251201211727344.jpeg",
     "assets/metaBoxを用いたXRにおけるexUIプロダクトの試作/file-20251201211607233.png",
     "assets/metaBoxを用いたXRにおけるexUIプロダクトの試作/file-20251201211545590.png",
     "assets/metaBoxを用いたXRにおけるexUIプロダクトの試作",
-    "M→Fes2023 オープニング映像.md",
     "assets/M→Fes2023 オープニング映像/file-20251201211319941.png",
     "assets/M→Fes2023 オープニング映像/file-20251201211316919.png",
     "assets/M→Fes2023 オープニング映像/file-20251201211313569.png",
@@ -288,16 +283,6 @@
     "assets/M→Fes2023 オープニング映像/file-20251201211301164.png",
     "assets/M→Fes2023 オープニング映像",
     "無題のファイル.base",
-    "OPENING.md",
-    "MVGenerator.md",
-    "拝啓、十年前の君へ.md",
-    "Pixel Website.md",
-    "渡邊恵太研究室プロモーションビデオ.md",
-    "M→Fes2024.md",
-    "RecommendMap.md",
-    "template/template.md",
-    "超すごい時間割.md",
-    "assets/Pixel Website/file-20251201210551053.png",
     "assets/Pixel Website",
     "assets/拝啓、十年前の君へ",
     "assets/MVGenerator",

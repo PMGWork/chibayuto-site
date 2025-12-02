@@ -1,8 +1,9 @@
 ---
+slug: mvgenerator
+thumbnail: "[[file-20251201205440399.png]]"
+createdAt: 2023-09-01
 tags:
   - プログラミング
-createdAt: 2023-09-01
-thumbnail: "[[file-20251201205440399.png]]"
 ---
 
 | Category | Name       |

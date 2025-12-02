@@ -1,7 +1,8 @@
 ---
-tags:
-createdAt:
+slug:
 thumbnail:
+createdAt:
+tags:
 ---
 
 | Category | Name |

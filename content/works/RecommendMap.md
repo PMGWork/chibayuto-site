@@ -1,8 +1,9 @@
 ---
+slug: recommendmap
+thumbnail: "[[file-20251201201221004.png]]"
+createdAt: 2024-08-01
 tags:
   - プログラミング
-createdAt: 2024-08-01
-thumbnail: "[[file-20251201201221004.png]]"
 ---
 
 | Category | Name                             |

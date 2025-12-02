@@ -1,6 +1,0 @@
-- Stack: Astro 5 + TypeScript、React連携（@astrojs/react）、Tailwind CSS 4、MDX/Markdownコンテンツ。
-- コンテンツ: `src/content.config.ts` で works コレクションを定義。frontmatter は `tags?: string[]`, `startDate: date`, `endDate: date` を想定。
-- Markdown: Obsidian 形式の画像記法 `![[filename]]` を `remark-obsidian-images` プラグインで相対画像に変換し、連続画像は `rehype-image-grid` でグリッド表示。画像は `content/works/assets/...` に配置。
-- スタイル: Tailwind ユーティリティ中心。`src/styles/global.css` でベーススタイル、typography を設定。
-- コンポーネント: Astro と React TSX 混在。パスは `src/components/*`、ページは `src/pages` / `src/pages/works`。
-- 命名: ファイル・コンポーネントはパスカル/キャメルケース、日付は frontmatter で `YYYY-MM` などで記述。

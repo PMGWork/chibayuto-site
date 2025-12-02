@@ -1,8 +1,9 @@
 ---
+slug: opening
+thumbnail: "[[file-20251201205115865.png]]"
+createdAt: 2024-06-01
 tags:
   - 映像
-createdAt: 2024-06-01
-thumbnail: "[[file-20251201205115865.png]]"
 ---
 
 | Category | Name                                                   |
