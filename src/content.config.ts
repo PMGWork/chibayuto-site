@@ -12,8 +12,7 @@ const works = defineCollection({
   }),
   schema: z.object({
     tags: z.array(z.string()).optional().nullable(),
-    startDate: z.coerce.date(),
-    endDate: z.coerce.date(),
+    createdAt: z.coerce.date(),
     thumbnail: z.string().optional().nullable(),
   }),
 });

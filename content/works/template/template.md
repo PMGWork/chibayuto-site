@@ -1,7 +1,6 @@
 ---
 tags:
-startDate:
-endDate:
+createdAt:
 thumbnail:
 ---
 

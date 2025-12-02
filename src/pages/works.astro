@@ -34,7 +34,7 @@ const worksWithThumbnails: Work[] = rawWorks.map((work) => {
 });
 
 const works = worksWithThumbnails.sort(
-  (a, b) => b.data.endDate.getTime() - a.data.endDate.getTime(),
+  (a, b) => b.data.createdAt.getTime() - a.data.createdAt.getTime(),
 );
 
 const allTags = [

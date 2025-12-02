@@ -2,32 +2,29 @@
 interface Props {
   className?: string;
   name: string;
-  startDate?: string;
-  endDate?: string;
+  createdAt?: string;
 }
 
-const { className, name, startDate, endDate } = Astro.props;
+const { className, name, createdAt } = Astro.props;
 
 const formatToYYMM = (date?: string) => {
-  if (!date) return '';
+  if (!date) return "";
   const dateObj = new Date(date);
   const year = dateObj.getFullYear();
-  const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+  const month = String(dateObj.getMonth() + 1).padStart(2, "0");
   return `${year}/${month}`;
 };
 
-const formattedStart = formatToYYMM(startDate);
-const formattedEnd = formatToYYMM(endDate);
-const displayDate = formattedStart === formattedEnd
-  ? formattedStart
-  : `${formattedStart} ~ ${formattedEnd}`;
+const displayDate = formatToYYMM(createdAt);
 ---
 
-<div class={className ?? ''}>
+<div class={className ?? ""}>
   <h1 class="text-2xl sm:text-4xl text-center sm:text-left">{name}</h1>
-  {displayDate && (
-    <p class="mt-1 sm:mt-2 text-gray-500 text-center sm:text-left">
-      {displayDate}
-    </p>
-  )}
+  {
+    displayDate && (
+      <p class="mt-1 sm:mt-2 text-gray-500 text-center sm:text-left">
+        {displayDate}
+      </p>
+    )
+  }
 </div>

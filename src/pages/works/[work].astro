@@ -52,8 +52,7 @@ const tocHeadings = headings.map((h) => ({
   level: h.depth,
 }));
 
-const formattedStartDate = work.data.startDate.toISOString();
-const formattedEndDate = work.data.endDate.toISOString();
+const formattedCreatedAt = work.data.createdAt.toISOString();
 ---
 
 <Layout title={title + " | Chiba Yuto"}>
@@ -62,11 +61,7 @@ const formattedEndDate = work.data.endDate.toISOString();
       class="flex flex-col items-center sm:items-start
         px-5 pt-28 pb-4 sm:px-20 sm:pt-40 sm:pb-10 max-w-dp mx-auto"
     >
-      <WorkHeader
-        name={title}
-        startDate={formattedStartDate}
-        endDate={formattedEndDate}
-      />
+      <WorkHeader name={title} createdAt={formattedCreatedAt} />
       <WorkImage
         className="mt-8 sm:mt-12"
         name={work.id}
