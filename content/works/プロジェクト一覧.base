@@ -1,0 +1,16 @@
+views:
+  - type: cards
+    name: View
+    filters:
+      and:
+        - file.folder == "/"
+        - file.fullname.contains(".md")
+    order:
+      - file.name
+      - tags
+      - createdAt
+    sort:
+      - property: createdAt
+        direction: DESC
+    image: note.thumbnail
+    imageAspectRatio: 0.6
