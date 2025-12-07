@@ -1,1 +1,30 @@
-{}
+{
+  // ESLint 有効化
+  "eslint.enable": true,
+
+  // Flat Config を有効化（ESLint v9）
+  "eslint.useFlatConfig": true,
+
+  // ESLint で検証するファイルタイプ
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "astro"
+  ],
+
+  // 保存時に自動修正
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  // Prettier でフォーマット
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+
+  // Astro ファイルの設定
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  }
+}
