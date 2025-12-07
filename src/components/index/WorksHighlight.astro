@@ -50,7 +50,7 @@ const worksWithImages = await Promise.all(
 );
 ---
 
-<div class="w-full overflow-x-hidden">
+<div class="min-h-[380px] w-full overflow-x-hidden">
   <div class="flex w-[10000px]">
     <div class="animate-scroll flex">
       {
@@ -65,8 +65,6 @@ const worksWithImages = await Promise.all(
                   height={350}
                   format="avif"
                   quality={75}
-                  decoding="async"
-                  loading="lazy"
                 />
               )}
               <div class="px-1 text-right text-[10px] text-gray-500">

@@ -25,8 +25,6 @@ export default function WorkCard({ work }: Props) {
               srcSet={optimizedImage.srcSet.attribute}
               {...optimizedImage.attributes.img}
               alt={work.id}
-              decoding="async"
-              loading="lazy"
             />
           ) : (
             <div className="absolute top-0 left-0 flex h-full w-full items-center justify-center rounded-lg bg-gray-200">
