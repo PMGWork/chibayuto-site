@@ -36,5 +36,8 @@
   // Astro ファイルの設定
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
-  }
+  },
+
+  // CSS unknown property 警告を抑制
+  "css.lint.unknownProperties": "ignore"
 }
