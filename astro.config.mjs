@@ -11,16 +11,13 @@ import rehypeImageGrid from './src/plugins/rehype-image-grid.js';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [
-    mdx(),
-    react(),
-  ],
+  integrations: [mdx(), react()],
   markdown: {
     remarkPlugins: [remarkImages],
     rehypePlugins: [rehypeImageGrid],
   },
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
   },
   adapter: vercel(),
 });

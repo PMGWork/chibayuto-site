@@ -1,0 +1,7 @@
+# ビルド成果物
+dist/
+.astro/
+node_modules/
+
+# Obsidian
+**/.obsidian/
