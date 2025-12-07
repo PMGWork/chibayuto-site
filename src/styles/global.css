@@ -1,6 +1,9 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
+/* Corner Shape Utilities */
+@import './corner-shape.css';
+
 @theme {
   --color-background: #f8f8f8;
   --color-foreground: #242424;
@@ -59,12 +62,12 @@ h6 {
 }
 
 .prose img {
-  @apply m-0 rounded-md;
+  @apply m-0 rounded-xl corner-lg;
 }
 
 /* Table */
 .prose table {
-  @apply mb-8 w-fit border-separate border-spacing-0 rounded-lg border border-gray-200 bg-gray-50 px-6 py-4;
+  @apply mb-8 w-fit border-separate border-spacing-0 rounded-2xl corner-lg border border-gray-200 bg-gray-50 px-6 py-4;
 }
 
 .prose table thead {

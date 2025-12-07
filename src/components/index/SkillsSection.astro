@@ -20,7 +20,7 @@ const categories = Array.from(new Set(skills.map((skill) => skill.category)));
             {skills
               .filter((skill) => skill.category === category)
               .map((skill) => (
-                <div class="rounded-lg border border-gray-200 bg-gray-50 px-2 py-1 text-xs sm:text-sm">
+                <div class="rounded-lg corner-md border border-gray-200 bg-gray-50 px-2 py-1 text-xs sm:text-sm">
                   {skill.label}
                 </div>
               ))}

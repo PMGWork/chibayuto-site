@@ -11,21 +11,10 @@ export default function CategoryButtons({
   selectedTag,
   onSelectTag,
 }: CategoryButtonsProps) {
-  // ボタンのクラスを取得（デスクトップ用）
-  const getDesktopButtonClass = (isSelected: boolean) => {
+  // ボタンのクラスを取得
+  const getButtonClass = (isSelected: boolean) => {
     const baseClass =
-      'relative rounded text-right hover:text-foreground hover:mr-2 ' +
-      'transition-all duration-300 ease-in-out cursor-pointer py-1 pl-1';
-    const selectedClass = 'mr-2 text-foreground';
-    const unselectedClass = 'text-gray-600';
-
-    return `${baseClass} ${isSelected ? selectedClass : unselectedClass}`;
-  };
-
-  // ボタンのクラスを取得（モバイル用）
-  const getMobileButtonClass = (isSelected: boolean) => {
-    const baseClass =
-      'px-3 py-1 rounded-full text-body-sm ' +
+      'px-3 py-1 rounded-full corner-sm text-body-sm' +
       'transition-all duration-300 ease-in-out cursor-pointer';
     const selectedClass = 'bg-primary text-background border border-primary';
     const unselectedClass =
@@ -35,21 +24,13 @@ export default function CategoryButtons({
     return `${baseClass} ${isSelected ? selectedClass : unselectedClass}`;
   };
 
-  // 線のクラスを取得（デスクトップ用）
-  const getLineClass = (isSelected: boolean) => {
-    const baseClass =
-      'h-0.5 w-0 bg-primary rounded-full ' +
-      'transition-all duration-300 ease-in-out';
-    return `${baseClass} ${isSelected ? 'w-2' : ''}`;
-  };
-
   return (
     <>
       {/* モバイル用 */}
       <div className="lg:hidden">
         <div className="flex flex-wrap gap-2">
           <button
-            className={getMobileButtonClass(selectedTag === null)}
+            className={getButtonClass(selectedTag === null)}
             onClick={() => onSelectTag(null)}
           >
             すべて
@@ -57,7 +38,7 @@ export default function CategoryButtons({
           {tags.map((tag, index) => (
             <button
               key={index}
-              className={getMobileButtonClass(selectedTag === tag)}
+              className={getButtonClass(selectedTag === tag)}
               onClick={() => onSelectTag(tag)}
             >
               {tag}
@@ -68,28 +49,20 @@ export default function CategoryButtons({
 
       {/* デスクトップ用 */}
       <div className="hidden flex-col items-end gap-2 lg:flex">
-        <div className="group flex items-center justify-end gap-2">
-          <div className={getLineClass(selectedTag === null)}></div>
-          <button
-            className={getDesktopButtonClass(selectedTag === null)}
-            onClick={() => onSelectTag(null)}
-          >
-            すべて
-          </button>
-        </div>
+        <button
+          className={getButtonClass(selectedTag === null)}
+          onClick={() => onSelectTag(null)}
+        >
+          すべて
+        </button>
         {tags.map((tag, index) => (
-          <div
+          <button
             key={index}
-            className="group flex items-center justify-end gap-2"
+            className={getButtonClass(selectedTag === tag)}
+            onClick={() => onSelectTag(tag)}
           >
-            <div className={getLineClass(selectedTag === tag)}></div>
-            <button
-              className={getDesktopButtonClass(selectedTag === tag)}
-              onClick={() => onSelectTag(tag)}
-            >
-              {tag}
-            </button>
-          </div>
+            {tag}
+          </button>
         ))}
       </div>
     </>

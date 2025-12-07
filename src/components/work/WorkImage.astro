@@ -16,7 +16,7 @@ const { className = '', name, image } = Astro.props;
   {
     image ? (
       <Image
-        class="h-auto w-full rounded-lg border border-gray-200"
+        class="h-auto w-full rounded-4xl corner-lg"
         src={image}
         alt={name}
         format="avif"
@@ -24,7 +24,7 @@ const { className = '', name, image } = Astro.props;
         priority
       />
     ) : (
-      <div class="flex h-64 w-full items-center justify-center rounded-lg bg-gray-200">
+      <div class="flex h-64 w-full items-center justify-center rounded-4xl corner-lg">
         <p class="text-gray-500">画像がありません</p>
       </div>
     )
