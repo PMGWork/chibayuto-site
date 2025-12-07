@@ -1,33 +1,35 @@
 import { visit } from 'unist-util-visit';
+import type { Root, Element, Text } from 'hast';
+import type { Plugin } from 'unified';
+
+type HastNode = Element | Text;
 
 /**
  * 連続する画像のみのパラグラフを検出し、グリッドレイアウトのdivでラップするrehypeプラグイン
  */
-export default function rehypeImageGrid() {
-  return (tree) => {
+const rehypeImageGrid: Plugin<[], Root> = () => {
+  return (tree: Root) => {
+    // すべてのelementノードを検索
     visit(tree, 'element', (node, index, parent) => {
+      if (!parent || typeof index !== 'number') return;
       if (node.tagName !== 'p') return;
       if (!isImageParagraph(node)) return;
 
       // 親要素の子要素を取得
-      const siblings = parent.children;
+      const siblings = parent.children as HastNode[];
 
       // 前の要素が画像パラグラフの場合は、すでに処理済み（グループの一部）なのでスキップ
       const prev = siblings[index - 1];
-      if (prev && isImageParagraph(prev)) {
-        return;
-      }
+      if (prev && isImageParagraph(prev)) return;
 
       // ここから後ろにいくつ画像パラグラフが続くか数える
-      let count = 1;
       let endIndex = index + 1;
-      let targetNodes = [node];
+      const targetNodes: HastNode[] = [node];
 
       while (endIndex < siblings.length) {
         const sibling = siblings[endIndex];
 
         if (isImageParagraph(sibling)) {
-          count++;
           targetNodes.push(sibling);
           endIndex++;
         } else if (isEmptyText(sibling)) {
@@ -49,22 +51,26 @@ export default function rehypeImageGrid() {
       }
 
       // 実際に画像パラグラフが2つ以上あるか確認
-      const imageParagraphs = targetNodes.filter(isImageParagraph);
+      const imageParagraphs = targetNodes.filter(isImageParagraph) as Element[];
       if (imageParagraphs.length < 2) return;
 
       // グループ化実行
 
       // 1. 画像を取り出し、スタイルを適用
-      const images = [];
+      const images: Element[] = [];
       imageParagraphs.forEach((p) => {
-        const img = p.children.find((c) => c.tagName === 'img');
+        const img = p.children.find(
+          (c): c is Element => c.type === 'element' && c.tagName === 'img',
+        );
         if (img) {
           if (!img.properties) img.properties = {};
 
-          const existingClass = img.properties.className || [];
-          const newClasses = Array.isArray(existingClass)
-            ? existingClass
-            : [existingClass];
+          const existingClass = img.properties.className;
+          const newClasses: string[] = Array.isArray(existingClass)
+            ? existingClass.filter((c): c is string => typeof c === 'string')
+            : typeof existingClass === 'string'
+              ? [existingClass]
+              : [];
 
           if (!newClasses.includes('rounded-lg')) newClasses.push('rounded-lg');
           if (!newClasses.includes('w-full')) newClasses.push('w-full');
@@ -82,7 +88,7 @@ export default function rehypeImageGrid() {
       });
 
       // 2. ラッパー作成
-      const wrapper = {
+      const wrapper: Element = {
         type: 'element',
         tagName: 'div',
         properties: {
@@ -98,9 +104,10 @@ export default function rehypeImageGrid() {
       return index + 1;
     });
   };
-}
+};
 
-function isImageParagraph(node) {
+// 画像パラグラフかどうかを判定するヘルパー関数
+function isImageParagraph(node: HastNode): node is Element {
   if (node.type !== 'element' || node.tagName !== 'p') return false;
 
   const children = node.children || [];
@@ -123,6 +130,9 @@ function isImageParagraph(node) {
   return !hasNonEmptyText;
 }
 
-function isEmptyText(node) {
+// 空白テキストかどうかを判定するヘルパー関数
+function isEmptyText(node: HastNode): node is Text {
   return node.type === 'text' && node.value.trim() === '';
 }
+
+export default rehypeImageGrid;

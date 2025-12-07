@@ -1,0 +1,109 @@
+---
+interface Heading {
+  id: string;
+  text: string;
+  level: number;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+---
+
+{
+  headings.length > 0 && (
+    <nav class="sticky top-32 self-start" id="toc-nav">
+      <div class="p-2">
+        <h3 class="mb-3 text-xs font-medium tracking-wide text-gray-500 uppercase">
+          目次
+        </h3>
+        <ul class="space-y-1">
+          {headings.map(({ id, text }) => (
+            <li>
+              <button
+                data-heading-id={id}
+                class="outline-button hover:text-foreground w-full cursor-pointer text-left text-sm text-gray-500 transition-colors hover:underline"
+              >
+                {text}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  )
+}
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    // 見出し要素のIDリストを取得
+    const tocButtons =
+      document.querySelectorAll<HTMLButtonElement>('.outline-button');
+    if (tocButtons.length === 0) return;
+
+    const headingIds = Array.from(tocButtons).map(
+      (button) => button.dataset.headingId!
+    );
+
+    let activeId = '';
+
+    // アクティブ状態のスタイルを更新
+    function updateActiveStyles(newActiveId: string) {
+      if (activeId === newActiveId) return;
+      activeId = newActiveId;
+
+      tocButtons.forEach((button) => {
+        const isActive = button.dataset.headingId === activeId;
+        button.classList.toggle('text-foreground', isActive);
+        button.classList.toggle('font-bold', isActive);
+        button.classList.toggle('text-gray-500', !isActive);
+      });
+    }
+
+    // IntersectionObserver でスクロール位置を追跡
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleHeadings = entries
+          .filter((entry) => entry.isIntersecting)
+          .map((entry) => entry.target.id);
+
+        if (visibleHeadings.length > 0) {
+          updateActiveStyles(visibleHeadings[0]);
+        }
+      },
+      {
+        rootMargin: '-20% 0% -35% 0%',
+        threshold: 0,
+      }
+    );
+
+    // 見出し要素を監視
+    headingIds.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    // クリック時のスムーズスクロール
+    tocButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const id = button.dataset.headingId;
+        if (!id) return;
+
+        const element = document.getElementById(id);
+        if (element) {
+          const headerOffset = 140;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition =
+            elementPosition + window.scrollY - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          });
+        }
+      });
+    });
+  });
+</script>

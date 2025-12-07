@@ -8,7 +8,7 @@ import { getAssetFolderName, getThumbnailPath } from '../../utils/work';
 import Layout from '../../layouts/Layout.astro';
 import WorkHeader from '../../components/work/WorkHeader.astro';
 import WorkImage from '../../components/work/WorkImage.astro';
-import TableOfContents from '../../components/work/TableOfContents';
+import Outline from '../../components/work/Outline.astro';
 
 export async function getStaticPaths() {
   const rawWorks = await getCollection('works');
@@ -24,7 +24,6 @@ export async function getStaticPaths() {
       if (!obsidianImageMatch) return work;
 
       const filename = obsidianImageMatch[1];
-      const assetFolderName = getAssetFolderName(work);
 
       return {
         ...work,
@@ -41,7 +40,7 @@ export async function getStaticPaths() {
 const { work } = Astro.props as { work: Work };
 const { Content, headings } = await render(work);
 
-// Derive title from filePath to preserve casing
+// filePathからtitleを取得する
 const title = work.filePath
   ? path.basename(work.filePath, path.extname(work.filePath))
   : work.id;
@@ -75,7 +74,7 @@ const formattedCreatedAt = work.data.createdAt.toISOString();
         </div>
 
         <div class="hidden w-64 flex-shrink-0 lg:block">
-          <TableOfContents client:load headings={tocHeadings} />
+          <Outline headings={tocHeadings} />
         </div>
       </div>
     </main>
