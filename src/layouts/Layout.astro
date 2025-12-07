@@ -23,6 +23,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
 
+    {/* Preconnect for Adobe Fonts */}
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin />
+    <link rel="preconnect" href="https://p.typekit.net" crossorigin />
+
     {/* Canonical URL */}
     <link rel="canonical" href={canonicalURL} />
 
