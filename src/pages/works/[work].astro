@@ -10,6 +10,7 @@ import Layout from '../../layouts/Layout.astro';
 import WorkHeader from '../../components/work/WorkHeader.astro';
 import WorkImage from '../../components/work/WorkImage.astro';
 import Outline from '../../components/work/Outline.astro';
+import MdxImage from '../../components/mdx/MdxImage.astro';
 
 // 静的生成
 export async function getStaticPaths() {
@@ -85,7 +86,7 @@ if (work.data.thumbnail) {
         <div
           class="prose prose-sm sm:prose-base flex max-w-none min-w-0 flex-1 flex-col gap-4"
         >
-          <Content />
+          <Content components={{ img: MdxImage }} />
         </div>
 
         <div class="hidden w-64 flex-shrink-0 lg:block">
