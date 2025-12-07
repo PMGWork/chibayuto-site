@@ -1,3 +1,6 @@
+# Markdown
+*.md
+
 # ビルド成果物
 dist/
 .astro/

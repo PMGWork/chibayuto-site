@@ -1,21 +1,21 @@
 ---
-import path from "path";
-import { getCollection, render } from "astro:content";
-import type { Work } from "../../types/work";
-import { getAssetFolderName, getThumbnailPath } from "../../utils/work";
+import path from 'path';
+import { getCollection, render } from 'astro:content';
+import type { Work } from '../../types/work';
+import { getAssetFolderName, getThumbnailPath } from '../../utils/work';
 
 // Components
-import Layout from "../../layouts/Layout.astro";
-import WorkHeader from "../../components/work/WorkHeader.astro";
-import WorkImage from "../../components/work/WorkImage.astro";
-import TableOfContents from "../../components/work/TableOfContents";
+import Layout from '../../layouts/Layout.astro';
+import WorkHeader from '../../components/work/WorkHeader.astro';
+import WorkImage from '../../components/work/WorkImage.astro';
+import TableOfContents from '../../components/work/TableOfContents';
 
 export async function getStaticPaths() {
-  const rawWorks = await getCollection("works");
+  const rawWorks = await getCollection('works');
 
   // テンプレート用のダミー記事は静的生成対象から除外する
   const works: Work[] = rawWorks
-    .filter((work) => !work.id.startsWith("template/"))
+    .filter((work) => !work.id.startsWith('template/'))
     .map((work) => {
       const { thumbnail } = work.data;
       if (!thumbnail) return work;
@@ -55,11 +55,10 @@ const tocHeadings = headings.map((h) => ({
 const formattedCreatedAt = work.data.createdAt.toISOString();
 ---
 
-<Layout title={title + " | Chiba Yuto"}>
+<Layout title={title + ' | Chiba Yuto'}>
   <div class="text-body-sm sm:text-body-base tracking-wider">
     <main
-      class="flex flex-col items-center sm:items-start
-        px-5 pt-28 pb-4 sm:px-20 sm:pt-40 sm:pb-10 max-w-dp mx-auto"
+      class="max-w-dp mx-auto flex flex-col items-center px-5 pt-28 pb-4 sm:items-start sm:px-20 sm:pt-40 sm:pb-10"
     >
       <WorkHeader name={title} createdAt={formattedCreatedAt} />
       <WorkImage
@@ -68,14 +67,14 @@ const formattedCreatedAt = work.data.createdAt.toISOString();
         thumbnail={work.thumbnail}
       />
 
-      <div class="w-full mt-12 sm:mt-20 flex gap-16">
+      <div class="mt-12 flex w-full gap-16 sm:mt-20">
         <div
-          class="flex-1 flex flex-col min-w-0 gap-4 prose prose-sm sm:prose-base max-w-none"
+          class="prose prose-sm sm:prose-base flex max-w-none min-w-0 flex-1 flex-col gap-4"
         >
           <Content />
         </div>
 
-        <div class="hidden lg:block w-64 flex-shrink-0">
+        <div class="hidden w-64 flex-shrink-0 lg:block">
           <TableOfContents client:load headings={tocHeadings} />
         </div>
       </div>

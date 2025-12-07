@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState, useRef } from 'react';
 
@@ -35,7 +35,7 @@ function WorkItem({ work, index }: WorkItemProps) {
   return (
     <div
       ref={ref}
-      className="transition-all duration-[1500ms] transform"
+      className="transform transition-all duration-[1500ms]"
       style={{
         transitionDelay: `${index * 75}ms`,
         transitionTimingFunction: 'cubic-bezier(.1,1,.3,1)',
@@ -54,13 +54,12 @@ export default function WorkList({ initialTags, initialWorks }: WorkListProps) {
 
   const filteredWorks: Work[] = selectedTag
     ? initialWorks.filter((work: Work) =>
-      work.data.tags?.some((tag: string) =>
-        tag === selectedTag)
-    )
+        work.data.tags?.some((tag: string) => tag === selectedTag),
+      )
     : initialWorks;
 
   return (
-    <div className="w-full flex flex-col gap-8">
+    <div className="flex w-full flex-col gap-8">
       {/* モバイル・タブレット用：上部にカテゴリボタン */}
       <div className="lg:hidden">
         <CategoryButtons
@@ -70,9 +69,9 @@ export default function WorkList({ initialTags, initialWorks }: WorkListProps) {
         />
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-16 justify-between">
+      <div className="flex flex-col justify-between gap-16 lg:flex-row">
         <div className="flex-1">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {filteredWorks.map((work, index) => (
               <WorkItem
                 key={`${selectedTag || 'all'}-${work.id || index}`}

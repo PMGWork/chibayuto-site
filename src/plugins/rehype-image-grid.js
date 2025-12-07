@@ -40,7 +40,10 @@ export default function rehypeImageGrid() {
       }
 
       // 末尾が空白テキストで終わっている場合、それはグループに含めない
-      while (targetNodes.length > 0 && !isImageParagraph(targetNodes[targetNodes.length - 1])) {
+      while (
+        targetNodes.length > 0 &&
+        !isImageParagraph(targetNodes[targetNodes.length - 1])
+      ) {
         targetNodes.pop();
         endIndex--;
       }
@@ -53,18 +56,21 @@ export default function rehypeImageGrid() {
 
       // 1. 画像を取り出し、スタイルを適用
       const images = [];
-      imageParagraphs.forEach(p => {
-        const img = p.children.find(c => c.tagName === 'img');
+      imageParagraphs.forEach((p) => {
+        const img = p.children.find((c) => c.tagName === 'img');
         if (img) {
           if (!img.properties) img.properties = {};
 
           const existingClass = img.properties.className || [];
-          const newClasses = Array.isArray(existingClass) ? existingClass : [existingClass];
+          const newClasses = Array.isArray(existingClass)
+            ? existingClass
+            : [existingClass];
 
           if (!newClasses.includes('rounded-lg')) newClasses.push('rounded-lg');
           if (!newClasses.includes('w-full')) newClasses.push('w-full');
           if (!newClasses.includes('h-auto')) newClasses.push('h-auto');
-          if (!newClasses.includes('object-cover')) newClasses.push('object-cover');
+          if (!newClasses.includes('object-cover'))
+            newClasses.push('object-cover');
           // proseのスタイルを打ち消すためにマージンとパディングを0にする
           if (!newClasses.includes('!m-0')) newClasses.push('!m-0');
           if (!newClasses.includes('!p-0')) newClasses.push('!p-0');
@@ -80,9 +86,9 @@ export default function rehypeImageGrid() {
         type: 'element',
         tagName: 'div',
         properties: {
-          className: ['grid', 'grid-cols-1', 'md:grid-cols-2', 'gap-4', 'my-8']
+          className: ['grid', 'grid-cols-1', 'md:grid-cols-2', 'gap-4', 'my-8'],
         },
-        children: images
+        children: images,
       };
 
       // 3. 置換
@@ -98,11 +104,13 @@ function isImageParagraph(node) {
   if (node.type !== 'element' || node.tagName !== 'p') return false;
 
   const children = node.children || [];
-  const hasImg = children.some(c => c.type === 'element' && c.tagName === 'img');
+  const hasImg = children.some(
+    (c) => c.type === 'element' && c.tagName === 'img',
+  );
   if (!hasImg) return false;
 
   // img以外の要素（テキストなど）が含まれていないかチェック
-  const hasNonEmptyText = children.some(c => {
+  const hasNonEmptyText = children.some((c) => {
     if (c.type === 'text') {
       return c.value.trim() !== '';
     }

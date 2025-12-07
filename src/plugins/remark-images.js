@@ -6,7 +6,9 @@ import path from 'path';
  */
 export default function remarkImages() {
   return (tree, file) => {
-    const docName = file.path ? path.basename(file.path, path.extname(file.path)) : '';
+    const docName = file.path
+      ? path.basename(file.path, path.extname(file.path))
+      : '';
     console.error(`[DEBUG] Processing file: ${file.path}, docName: ${docName}`);
 
     visit(tree, 'text', (node, index, parent) => {
@@ -33,7 +35,7 @@ export default function remarkImages() {
         if (matchIndex > lastIndex) {
           parts.push({
             type: 'text',
-            value: text.substring(lastIndex, matchIndex)
+            value: text.substring(lastIndex, matchIndex),
           });
         }
 
@@ -53,7 +55,7 @@ export default function remarkImages() {
       if (lastIndex < text.length) {
         parts.push({
           type: 'text',
-          value: text.substring(lastIndex)
+          value: text.substring(lastIndex),
         });
       }
 

@@ -23,6 +23,16 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
 
+  // TypeScript ファイルの設定
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // TSX ファイルの設定
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
   // Astro ファイルの設定
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"

@@ -1,4 +1,4 @@
-import type { Work } from "../types/work";
+import type { Work } from '../types/work';
 
 export const getAssetFolderName = (work: Work) => {
   if (work.filePath) {
@@ -8,7 +8,7 @@ export const getAssetFolderName = (work: Work) => {
     }
   }
 
-  return work.id.replace(/\.mdx?$/, "");
+  return work.id.replace(/\.mdx?$/, '');
 };
 
 export const getThumbnailPath = (work: Work, filename: string) => {

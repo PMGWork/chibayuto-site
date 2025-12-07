@@ -1,9 +1,9 @@
 ---
-import { getCollection } from "astro:content";
-import type { Work } from "../../types/work";
-import { getAssetFolderName, getThumbnailPath } from "../../utils/work";
+import { getCollection } from 'astro:content';
+import type { Work } from '../../types/work';
+import { getAssetFolderName, getThumbnailPath } from '../../utils/work';
 
-const rawWorks = await getCollection("works");
+const rawWorks = await getCollection('works');
 
 const worksWithThumbnails: Work[] = rawWorks.map((work) => {
   const { body } = work;
@@ -21,7 +21,7 @@ const worksWithThumbnails: Work[] = rawWorks.map((work) => {
 });
 
 const works = worksWithThumbnails.sort(
-  (a, b) => b.data.createdAt.getTime() - a.data.createdAt.getTime(),
+  (a, b) => b.data.createdAt.getTime() - a.data.createdAt.getTime()
 );
 ---
 
@@ -32,18 +32,18 @@ const works = worksWithThumbnails.sort(
         works.map((work: Work) => {
           const imageSrc = work.thumbnail;
           return (
-            <div class="flex flex-col justify-end gap-1 items-end">
+            <div class="flex flex-col items-end justify-end gap-1">
               {imageSrc && (
                 <img
                   src={imageSrc}
-                  alt={work.id || "作品のサムネイル画像"}
-                  class="w-auto h-[350px] object-cover"
+                  alt={work.id || '作品のサムネイル画像'}
+                  class="h-[350px] w-auto object-cover"
                   height={350}
                   decoding="async"
                   loading="eager"
                 />
               )}
-              <div class="text-gray-500 text-[10px] text-right px-1">
+              <div class="px-1 text-right text-[10px] text-gray-500">
                 {work.id}
               </div>
             </div>

@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import type { Work } from "../../types/work";
+import type { Work } from '../../types/work';
 
 // Props
 interface Props {
@@ -14,17 +14,20 @@ export default function WorkCard({ work }: Props) {
   return (
     <div className="flex flex-col gap-4 pb-8">
       <a href={`/works/${work.id}`}>
-        <div className="relative w-full overflow-hidden rounded-lg border-gray-200 border" style={{ paddingBottom: '56.25%' }}>
+        <div
+          className="relative w-full overflow-hidden rounded-lg border border-gray-200"
+          style={{ paddingBottom: '56.25%' }}
+        >
           {thumbnail ? (
             <img
-              className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-300 ease-in-out hover:scale-105"
+              className="absolute top-0 left-0 h-full w-full object-cover transition-transform duration-300 ease-in-out hover:scale-105"
               src={thumbnail}
               alt={work.id}
               decoding="async"
               loading="lazy"
             />
           ) : (
-            <div className="absolute top-0 left-0 w-full h-full bg-gray-200 rounded-lg flex items-center justify-center">
+            <div className="absolute top-0 left-0 flex h-full w-full items-center justify-center rounded-lg bg-gray-200">
               <p className="text-gray-500">画像がありません</p>
             </div>
           )}
@@ -32,9 +35,12 @@ export default function WorkCard({ work }: Props) {
       </a>
       <div className="flex flex-col gap-2">
         <h3 className="text-xl">{work.title || work.id}</h3>
-        <div className='flex gap-2'>
+        <div className="flex gap-2">
           {workTags.map((tag, tagIndex) => (
-            <span key={tagIndex} className="bg-gray-50 rounded-lg border-gray-200 border px-2 py-1 text-xs font-medium">
+            <span
+              key={tagIndex}
+              className="rounded-lg border border-gray-200 bg-gray-50 px-2 py-1 text-xs font-medium"
+            >
               {tag}
             </span>
           ))}

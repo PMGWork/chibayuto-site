@@ -34,6 +34,12 @@ export default [
 
   // 除外
   {
-    ignores: ['node_modules/**', 'dist/**', '.astro/**', '.vercel/**', '**/.obsidian/**'],
+    ignores: [
+      'node_modules/**',
+      'dist/**',
+      '.astro/**',
+      '.vercel/**',
+      '**/.obsidian/**',
+    ],
   },
 ];

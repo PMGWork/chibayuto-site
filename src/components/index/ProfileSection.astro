@@ -1,11 +1,11 @@
 ---
 import { Image } from 'astro:assets';
-import profileImage from "../../assets/images/profile_compressed.jpg";
+import profileImage from '../../assets/images/profile_compressed.jpg';
 ---
 
-<div class="flex items-center flex-col md:flex-row gap-8 sm:gap-16 md:gap-24">
+<div class="flex flex-col items-center gap-8 sm:gap-16 md:flex-row md:gap-24">
   <Image
-    class="border-gray-200 border w-[350px] h-[500px] object-cover"
+    class="h-[500px] w-[350px] border border-gray-200 object-cover"
     src={profileImage}
     alt="Yuto CHIBA"
     width="1752"
@@ -15,13 +15,21 @@ import profileImage from "../../assets/images/profile_compressed.jpg";
     fetchpriority="high"
   />
   <div>
-    <h2 class="text-xl sm:text-2xl py-4">千葉 裕斗 / Yuto CHIBA</h2>
+    <h2 class="py-4 text-xl sm:text-2xl">千葉 裕斗 / Yuto CHIBA</h2>
     <div class="flex flex-col gap-2">
-      <p>明治大学総合数理学部先端メディアサイエンス学科3年 渡邊恵太研究室所属</p>
-      <p>2003年生まれ。埼玉県出身。XR空間でのインタラクションやシステムの設計について研究しています。</p>
+      <p>
+        明治大学総合数理学部先端メディアサイエンス学科3年 渡邊恵太研究室所属
+      </p>
+      <p>
+        2003年生まれ。埼玉県出身。XR空間でのインタラクションやシステムの設計について研究しています。
+      </p>
       <p>
         また、フリーランスの映像作家
-        <a class="underline hover:text-primary" href="https://pmgwork.com" target="_blank">(pmgwork.com)</a>
+        <a
+          class="hover:text-primary underline"
+          href="https://pmgwork.com"
+          target="_blank">(pmgwork.com)</a
+        >
         としても活動しており、フォトリアルCGやモーショングラフィックスを用いた映像作品の制作を得意としています。
       </p>
     </div>

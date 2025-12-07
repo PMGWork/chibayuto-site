@@ -8,7 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const works = defineCollection({
   loader: glob({
     pattern: '**/*.{md,mdx}',
-    base: path.resolve(__dirname, '../content/works')
+    base: path.resolve(__dirname, '../content/works'),
   }),
   schema: z.object({
     tags: z.array(z.string()).optional().nullable(),

@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 
 type IntersectionObserverCallback = (entry: IntersectionObserverEntry) => void;
@@ -23,7 +22,7 @@ export const useIntersectionObserver = ({
           onIntersect(entry);
         });
       },
-      { root, rootMargin, threshold }
+      { root, rootMargin, threshold },
     );
 
     const currentTarget = target?.current;

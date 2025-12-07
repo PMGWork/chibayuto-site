@@ -1,15 +1,15 @@
 ---
-import path from "path";
-import { getCollection } from "astro:content";
-import type { Work } from "../types/work";
-import { getAssetFolderName, getThumbnailPath } from "../utils/work";
+import path from 'path';
+import { getCollection } from 'astro:content';
+import type { Work } from '../types/work';
+import { getAssetFolderName, getThumbnailPath } from '../utils/work';
 
 // Components
-import WorkList from "../components/works/WorkList.tsx";
-import Layout from "../layouts/Layout.astro";
+import WorkList from '../components/works/WorkList.tsx';
+import Layout from '../layouts/Layout.astro';
 
-const rawWorks = (await getCollection("works")).filter(
-  (work) => !work.id.startsWith("template/"),
+const rawWorks = (await getCollection('works')).filter(
+  (work) => !work.id.startsWith('template/')
 );
 
 const worksWithThumbnails: Work[] = rawWorks.map((work) => {
@@ -34,7 +34,7 @@ const worksWithThumbnails: Work[] = rawWorks.map((work) => {
 });
 
 const works = worksWithThumbnails.sort(
-  (a, b) => b.data.createdAt.getTime() - a.data.createdAt.getTime(),
+  (a, b) => b.data.createdAt.getTime() - a.data.createdAt.getTime()
 );
 
 const allTags = [
@@ -42,20 +42,18 @@ const allTags = [
 ] as string[];
 
 const meta = {
-  title: "Works | Chiba Yuto",
+  title: 'Works | Chiba Yuto',
 };
 ---
 
 <Layout title={meta.title}>
   <div class="text-body-sm sm:text-body-base tracking-wider">
     <main
-      class="flex flex-col gap-16 items-center
-      px-5 pt-28 pb-4 max-w-dp mx-auto
-      sm:items-start sm:px-20 sm:pt-40 sm:pb-10"
+      class="max-w-dp mx-auto flex flex-col items-center gap-16 px-5 pt-28 pb-4 sm:items-start sm:px-20 sm:pt-40 sm:pb-10"
     >
-      <div class="flex flex-col gap-2 w-full">
-        <h1 class="text-4xl text-center sm:text-left">Works</h1>
-        <p class="text-xs text-center sm:text-left">作品一覧</p>
+      <div class="flex w-full flex-col gap-2">
+        <h1 class="text-center text-4xl sm:text-left">Works</h1>
+        <p class="text-center text-xs sm:text-left">作品一覧</p>
       </div>
       <WorkList client:visible initialTags={allTags} initialWorks={works} />
     </main>
