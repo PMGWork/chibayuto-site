@@ -8,9 +8,12 @@ import tailwindcss from '@tailwindcss/vite';
 import remarkImages from './src/plugins/remark-images';
 import rehypeImageGrid from './src/plugins/rehype-image-grid';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
-  integrations: [mdx(), react()],
+  site: 'https://chibayuto.com',
+  integrations: [mdx(), react(), sitemap()],
   markdown: {
     remarkPlugins: [remarkImages],
     rehypePlugins: [rehypeImageGrid],
