@@ -5,16 +5,16 @@ import type { Work } from '../../types/work';
 import { getThumbnailPath, getAssetFolderName } from '../../utils/work';
 import { getWorkImage } from '../../utils/assets';
 
-// Components
+// コンポーネント
 import Layout from '../../layouts/Layout.astro';
 import WorkHeader from '../../components/work/WorkHeader.astro';
 import WorkImage from '../../components/work/WorkImage.astro';
 import Outline from '../../components/work/Outline.astro';
 
+// 静的生成
 export async function getStaticPaths() {
   const rawWorks = await getCollection('works');
 
-  // テンプレート用のダミー記事は静的生成対象から除外する
   const works: Work[] = rawWorks
     .filter((work) => !work.id.startsWith('template/'))
     .map((work) => {
@@ -38,14 +38,16 @@ export async function getStaticPaths() {
   }));
 }
 
+// Props
 const { work } = Astro.props as { work: Work };
 const { Content, headings } = await render(work);
 
-// filePathからtitleを取得する
+// タイトル
 const title = work.filePath
   ? path.basename(work.filePath, path.extname(work.filePath))
   : work.id;
 
+// 目次
 const tocHeadings = headings.map((h) => ({
   id: h.slug,
   text: h.text,
@@ -54,7 +56,7 @@ const tocHeadings = headings.map((h) => ({
 
 const formattedCreatedAt = work.data.createdAt.toISOString();
 
-// サムネイル画像の解決
+// サムネイル画像
 let thumbnailImageMetadata;
 if (work.data.thumbnail) {
   const match = work.data.thumbnail.match(/!?\[\[([^\]]+)\]\]/);

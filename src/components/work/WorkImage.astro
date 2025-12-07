@@ -19,10 +19,9 @@ const { className = '', name, image } = Astro.props;
         class="h-auto w-full rounded-lg border border-gray-200"
         src={image}
         alt={name}
-        widths={[240, 540, 720, 1080, 1600]}
-        sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, 1600px`}
-        decoding="async"
-        loading="eager"
+        format="avif"
+        quality={75}
+        priority
       />
     ) : (
       <div class="flex h-64 w-full items-center justify-center rounded-lg bg-gray-200">

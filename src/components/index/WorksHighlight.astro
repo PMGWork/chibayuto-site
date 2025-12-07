@@ -63,10 +63,10 @@ const worksWithImages = await Promise.all(
                   alt={work.id || '作品のサムネイル画像'}
                   class="h-[350px] w-auto object-cover"
                   height={350}
-                  widths={[240, 540, 720, 1080]}
-                  sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, 1080px`}
+                  format="avif"
+                  quality={75}
                   decoding="async"
-                  loading="eager"
+                  loading="lazy"
                 />
               )}
               <div class="px-1 text-right text-[10px] text-gray-500">
