@@ -2,7 +2,8 @@
 import path from 'path';
 import { getCollection, render } from 'astro:content';
 import type { Work } from '../../types/work';
-import { getThumbnailPath } from '../../utils/work';
+import { getThumbnailPath, getAssetFolderName } from '../../utils/work';
+import { getWorkImage } from '../../utils/assets';
 
 // Components
 import Layout from '../../layouts/Layout.astro';
@@ -52,6 +53,17 @@ const tocHeadings = headings.map((h) => ({
 }));
 
 const formattedCreatedAt = work.data.createdAt.toISOString();
+
+// サムネイル画像の解決
+let thumbnailImageMetadata;
+if (work.data.thumbnail) {
+  const match = work.data.thumbnail.match(/!?\[\[([^\]]+)\]\]/);
+  if (match) {
+    const filename = match[1];
+    const workId = getAssetFolderName(work);
+    thumbnailImageMetadata = await getWorkImage(workId, filename);
+  }
+}
 ---
 
 <Layout title={title + ' | Chiba Yuto'}>
@@ -62,7 +74,8 @@ const formattedCreatedAt = work.data.createdAt.toISOString();
       <WorkHeader name={title} createdAt={formattedCreatedAt} />
       <WorkImage
         className="mt-8 sm:mt-12"
-        name={work.id}
+        name={title}
+        image={thumbnailImageMetadata}
         thumbnail={work.thumbnail}
       />
 

@@ -9,7 +9,7 @@ interface Props {
 
 export default function WorkCard({ work }: Props) {
   const workTags = work.data.tags || [];
-  const thumbnail = work.thumbnail;
+  const { optimizedImage } = work;
 
   return (
     <div className="flex flex-col gap-4 pb-8">
@@ -18,10 +18,12 @@ export default function WorkCard({ work }: Props) {
           className="relative w-full overflow-hidden rounded-lg border border-gray-200"
           style={{ paddingBottom: '56.25%' }}
         >
-          {thumbnail ? (
+          {optimizedImage ? (
             <img
               className="absolute top-0 left-0 h-full w-full object-cover transition-transform duration-300 ease-in-out hover:scale-105"
-              src={thumbnail}
+              src={optimizedImage.src}
+              srcSet={optimizedImage.srcSet.attribute}
+              {...optimizedImage.attributes.img}
               alt={work.id}
               decoding="async"
               loading="lazy"
