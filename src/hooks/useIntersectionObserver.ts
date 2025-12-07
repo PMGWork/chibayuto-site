@@ -1,9 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 type IntersectionObserverCallback = (entry: IntersectionObserverEntry) => void;
 
 interface IntersectionObserverOptions extends IntersectionObserverInit {
-  // フックの利用側で型エラーが出ないようにanyで定義
   target?: any;
   onIntersect: IntersectionObserverCallback;
 }
