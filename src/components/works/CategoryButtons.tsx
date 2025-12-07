@@ -17,7 +17,7 @@ export default function CategoryButtons({
       'relative rounded text-right hover:text-foreground hover:mr-2 ' +
       'transition-all duration-300 ease-in-out cursor-pointer py-1 pl-1';
     const selectedClass = 'mr-2 text-foreground';
-    const unselectedClass = 'text-gray-500';
+    const unselectedClass = 'text-gray-600';
 
     return `${baseClass} ${isSelected ? selectedClass : unselectedClass}`;
   };
@@ -29,7 +29,7 @@ export default function CategoryButtons({
       'transition-all duration-300 ease-in-out cursor-pointer';
     const selectedClass = 'bg-primary text-background border border-primary';
     const unselectedClass =
-      'bg-background text-gray-500 border border-gray-200 ' +
+      'bg-background text-gray-600 border border-gray-200 ' +
       'hover:border-primary';
 
     return `${baseClass} ${isSelected ? selectedClass : unselectedClass}`;

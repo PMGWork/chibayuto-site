@@ -64,7 +64,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           f = false,
           s = d.getElementsByTagName('script')[0],
           a;
-        h.className += ' wf-loading';
+        // h.className += ' wf-loading'; // Prevent hiding text
         tk.src = 'https://use.typekit.net/' + config.kitId + '.js';
         tk.async = true;
         tk.onload = tk.onreadystatechange = function () {
