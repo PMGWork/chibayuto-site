@@ -35,7 +35,7 @@ function WorkItem({ work, index }: WorkItemProps) {
   return (
     <div
       ref={ref}
-      className="transform transition-all duration-[1500ms]"
+      className="transform transition-all duration-1500"
       style={{
         transitionDelay: `${index * 75}ms`,
         transitionTimingFunction: 'cubic-bezier(.1,1,.3,1)',
