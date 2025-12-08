@@ -62,12 +62,12 @@ h6 {
 }
 
 .prose img {
-  @apply m-0 rounded-xl corner-lg;
+  @apply corner-lg m-0 rounded-xl;
 }
 
 /* Table */
 .prose table {
-  @apply mb-8 w-fit border-separate border-spacing-0 rounded-2xl corner-lg border border-gray-200 bg-gray-50 px-6 py-4;
+  @apply corner-lg mb-8 w-fit border-separate border-spacing-0 rounded-2xl border border-gray-200 bg-gray-50 px-6 py-4;
 }
 
 .prose table thead {

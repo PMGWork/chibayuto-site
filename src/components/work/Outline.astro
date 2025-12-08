@@ -44,7 +44,7 @@ const { headings } = Astro.props;
     if (tocButtons.length === 0) return;
 
     const headingIds = Array.from(tocButtons).map(
-      (button) => button.dataset.headingId!
+      (button) => button.dataset.headingId!,
     );
 
     let activeId = '';
@@ -76,7 +76,7 @@ const { headings } = Astro.props;
       {
         rootMargin: '-20% 0% -35% 0%',
         threshold: 0,
-      }
+      },
     );
 
     // 見出し要素を監視

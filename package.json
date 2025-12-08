@@ -10,7 +10,10 @@
     "astro": "astro",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "prettier --check . && eslint .",
+    "fix": "prettier --write . && eslint --fix ."
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
@@ -36,6 +39,7 @@
     "eslint-plugin-astro": "^1.5.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
+    "globals": "^16.5.0",
     "prettier": "^3.7.4",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
