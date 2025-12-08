@@ -129,8 +129,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                     resolve(null);
                   };
                   el.addEventListener('animationend', onEnd, { once: true });
-                })
-            )
+                }),
+            ),
           );
         }
 
@@ -150,7 +150,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           () => {
             el.classList.remove(FADE_IN);
           },
-          { once: true }
+          { once: true },
         );
       });
     });
