@@ -15,7 +15,7 @@ export default function WorkCard({ work }: Props) {
     <div className="flex flex-col gap-4 pb-8">
       <a href={`/works/${work.id}`}>
         <div
-          className="corner-lg relative w-full overflow-hidden rounded-xl"
+          className="corner-lg relative w-full overflow-hidden"
           style={{ paddingBottom: '56.25%' }}
         >
           {optimizedImage ? (
@@ -27,7 +27,7 @@ export default function WorkCard({ work }: Props) {
               alt={work.id}
             />
           ) : (
-            <div className="corner-lg absolute top-0 left-0 flex h-full w-full items-center justify-center rounded-xl bg-gray-200">
+            <div className="corner-lg absolute top-0 left-0 flex h-full w-full items-center justify-center bg-gray-200">
               <p className="text-gray-500">画像がありません</p>
             </div>
           )}
@@ -39,7 +39,7 @@ export default function WorkCard({ work }: Props) {
           {workTags.map((tag, tagIndex) => (
             <span
               key={tagIndex}
-              className="corner-md rounded-lg border border-gray-200 bg-gray-50 px-2 py-1 text-xs font-medium"
+              className="corner-md border border-gray-200 bg-gray-50 px-2 py-1 text-xs font-medium"
             >
               {tag}
             </span>

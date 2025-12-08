@@ -14,7 +14,7 @@ export default function CategoryButtons({
   // ボタンのクラスを取得
   const getButtonClass = (isSelected: boolean) => {
     const baseClass =
-      'px-3 py-1 rounded-full corner-sm text-body-sm' +
+      'px-3 sm:px-4 py-1 corner-full text-sm sm:text-body-sm ' +
       'transition-all duration-300 ease-in-out cursor-pointer';
     const selectedClass = 'bg-primary text-background border border-primary';
     const unselectedClass =

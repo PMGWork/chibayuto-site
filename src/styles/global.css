@@ -57,17 +57,37 @@ h6 {
   @apply text-body-base text-foreground mb-6;
 }
 
+.prose a {
+  @apply hover:text-primary underline;
+}
+
 .prose h3 {
   @apply mt-6 mb-2 w-full text-xl font-medium sm:text-2xl;
 }
 
 .prose img {
-  @apply corner-lg m-0 rounded-xl;
+  @apply m-0;
+  border-radius: var(--radius-lg);
+}
+
+@supports (corner-shape: squircle) {
+  .prose img {
+    border-radius: calc(var(--radius-lg) * var(--corner-scale));
+    corner-shape: superellipse(var(--corner-n));
+  }
 }
 
 /* Table */
 .prose table {
-  @apply corner-lg mb-8 w-fit border-separate border-spacing-0 rounded-2xl border border-gray-200 bg-gray-50 px-6 py-4;
+  @apply mb-8 w-fit border-separate border-spacing-0 border border-gray-200 bg-gray-50 px-6 py-4;
+  border-radius: var(--radius-2xl);
+}
+
+@supports (corner-shape: squircle) {
+  .prose table {
+    border-radius: calc(var(--radius-2xl) * var(--corner-scale));
+    corner-shape: superellipse(var(--corner-n));
+  }
 }
 
 .prose table thead {

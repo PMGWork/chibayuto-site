@@ -72,7 +72,6 @@ const rehypeImageGrid: Plugin<[], Root> = () => {
               ? [existingClass]
               : [];
 
-          if (!newClasses.includes('rounded-xl')) newClasses.push('rounded-xl');
           if (!newClasses.includes('corner-lg')) newClasses.push('corner-lg');
           if (!newClasses.includes('w-full')) newClasses.push('w-full');
           if (!newClasses.includes('h-auto')) newClasses.push('h-auto');
