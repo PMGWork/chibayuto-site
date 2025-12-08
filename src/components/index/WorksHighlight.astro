@@ -6,7 +6,7 @@ import { getThumbnailPath, getAssetFolderName } from '../../utils/work';
 import { getWorkImage } from '../../utils/assets';
 
 const rawWorks = (await getCollection('works')).filter(
-  (work) => !work.id.startsWith('template/'),
+  (work) => !work.id.startsWith('template/')
 );
 
 const worksWithThumbnails: Work[] = rawWorks.map((work) => {
@@ -25,7 +25,7 @@ const worksWithThumbnails: Work[] = rawWorks.map((work) => {
 });
 
 const works = worksWithThumbnails.sort(
-  (a, b) => b.data.createdAt.getTime() - a.data.createdAt.getTime(),
+  (a, b) => b.data.createdAt.getTime() - a.data.createdAt.getTime()
 );
 
 const worksWithImages = await Promise.all(
@@ -46,7 +46,7 @@ const worksWithImages = await Promise.all(
       work,
       imageMetadata,
     };
-  }),
+  })
 );
 ---
 
@@ -63,8 +63,6 @@ const worksWithImages = await Promise.all(
                   alt={work.id || '作品のサムネイル画像'}
                   class="h-[350px] w-auto object-cover"
                   height={350}
-                  format="avif"
-                  quality={75}
                 />
               )}
               <div class="px-1 text-right text-[10px] text-gray-500">

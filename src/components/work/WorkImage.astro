@@ -15,14 +15,7 @@ const { className = '', name, image } = Astro.props;
 <div class={`w-full ${className}`}>
   {
     image ? (
-      <Image
-        class="corner-3xl h-auto w-full"
-        src={image}
-        alt={name}
-        format="avif"
-        quality={75}
-        priority
-      />
+      <Image class="corner-3xl h-auto w-full" src={image} alt={name} priority />
     ) : (
       <div class="corner-3xl flex h-64 w-full items-center justify-center">
         <p class="text-gray-500">画像がありません</p>

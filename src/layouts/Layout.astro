@@ -1,11 +1,9 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import { GoogleFontsOptimizer } from 'astro-google-fonts-optimizer';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-
-import '@fontsource/manrope/500.css';
-import '@fontsource/manrope/600.css';
 
 const {
   title,
@@ -22,8 +20,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#ffffff" />
 
-    {/* Preconnect for Adobe Fonts */}
+    {/* Google Fonts */}
+    <GoogleFontsOptimizer
+      url="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600&display=swap"
+    />
+
+    {/* Adobe Fonts */}
+    <link rel="preload" href="https://use.typekit.net/ieb8mos.css" as="style" />
     <link rel="preconnect" href="https://use.typekit.net" crossorigin />
     <link rel="preconnect" href="https://p.typekit.net" crossorigin />
 
@@ -50,7 +55,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <ClientRouter />
     <script is:inline id="adobe-fonts">
       (function (d) {
-        var config = {
+        const config = {
             kitId: 'ieb8mos',
             scriptTimeout: 3000,
             async: true,
@@ -61,8 +66,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
               h.className.replace(/\bwf-loading\b/g, '') + ' wf-inactive';
           }, config.scriptTimeout),
           tk = d.createElement('script'),
-          f = false,
-          s = d.getElementsByTagName('script')[0],
+          s = d.getElementsByTagName('script')[0];
+        let f = false,
           a;
         // h.className += ' wf-loading'; // Prevent hiding text
         tk.src = 'https://use.typekit.net/' + config.kitId + '.js';
@@ -74,7 +79,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           clearTimeout(t);
           try {
             Typekit.load(config);
-          } catch (e) {}
+          } catch {
+            /* Typekit load error - silently ignore */
+          }
         };
         s.parentNode.insertBefore(tk, s);
       })(document);
@@ -100,7 +107,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       document.querySelectorAll('main, footer').forEach((el) => {
         el.classList.remove(FADE_OUT, FADE_IN);
       });
-      // @ts-ignore – 型宣言を気にせず元のloaderを退避
+      // @ts-expect-error – 型宣言を気にせず元のloaderを退避
       const originalLoader = event.loader;
       // loader を差し替え
       // 1. 現在のページをフェードアウト
@@ -122,8 +129,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                     resolve(null);
                   };
                   el.addEventListener('animationend', onEnd, { once: true });
-                }),
-            ),
+                })
+            )
           );
         }
 
@@ -143,7 +150,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           () => {
             el.classList.remove(FADE_IN);
           },
-          { once: true },
+          { once: true }
         );
       });
     });

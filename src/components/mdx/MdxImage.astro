@@ -11,12 +11,4 @@ interface Props {
 const { src, alt = '', class: className } = Astro.props;
 ---
 
-<Image
-  src={src}
-  alt={alt}
-  class={className}
-  format="avif"
-  quality={75}
-  loading="lazy"
-  decoding="async"
-/>
+<Image src={src} alt={alt} class={className} loading="lazy" decoding="async" />

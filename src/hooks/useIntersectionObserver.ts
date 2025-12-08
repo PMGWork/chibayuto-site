@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 type IntersectionObserverCallback = (entry: IntersectionObserverEntry) => void;
 
 interface IntersectionObserverOptions extends IntersectionObserverInit {
-  target?: any;
+  target?: React.RefObject<Element | null>;
   onIntersect: IntersectionObserverCallback;
 }
 

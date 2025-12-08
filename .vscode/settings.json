@@ -39,5 +39,10 @@
   },
 
   // CSS unknown property 警告を抑制
-  "css.lint.unknownProperties": "ignore"
+  "css.lint.unknownProperties": "ignore",
+
+  // bun.lock をプレーンテキストとして扱う
+  "files.associations": {
+    "bun.lock": "plaintext"
+  }
 }

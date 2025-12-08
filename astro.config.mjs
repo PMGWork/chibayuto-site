@@ -7,6 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 import remarkImages from './src/plugins/remark-images';
 import rehypeImageGrid from './src/plugins/rehype-image-grid';
+import rehypeTableLinks from './src/plugins/rehype-table-links';
 
 import sitemap from '@astrojs/sitemap';
 
@@ -16,7 +17,7 @@ export default defineConfig({
   integrations: [mdx(), react(), sitemap()],
   markdown: {
     remarkPlugins: [remarkImages],
-    rehypePlugins: [rehypeImageGrid],
+    rehypePlugins: [rehypeImageGrid, rehypeTableLinks],
   },
   vite: {
     plugins: [tailwindcss()],

@@ -5,6 +5,20 @@ import prettierConfig from 'eslint-config-prettier';
 import astroPlugin from 'eslint-plugin-astro';
 
 export default [
+  // Ignore patterns
+  {
+    ignores: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/.astro/**',
+      '**/bun.lock',
+      '**/*.lock',
+      '**/bun.lockb',
+      '**/.obsidian/**',
+      '**/content/**',
+    ],
+  },
+
   // Node.js
   {
     languageOptions: {
