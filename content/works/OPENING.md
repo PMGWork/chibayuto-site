@@ -4,6 +4,8 @@ thumbnail: "[[file-20251201205115865.png]]"
 createdAt: 2024-06-01
 tags:
   - 映像
+isPinned: false
+isDraft: false
 ---
 
 | Category | Name                                                   |

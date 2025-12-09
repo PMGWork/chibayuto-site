@@ -4,6 +4,8 @@ thumbnail: "[[file-20251201201221004.png]]"
 createdAt: 2024-08-01
 tags:
   - プログラミング
+isPinned: false
+isDraft: false
 ---
 
 | Category | Name                             |
