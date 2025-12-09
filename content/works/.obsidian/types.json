@@ -1,8 +1,0 @@
-{
-  "types": {
-    "slug": "text",
-    "thumbnail": "text",
-    "createdAt": "date",
-    "tags": "tags"
-  }
-}
