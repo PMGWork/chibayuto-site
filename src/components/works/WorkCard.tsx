@@ -1,5 +1,6 @@
 'use client';
 
+import { IconPinFilled } from '@tabler/icons-react';
 import type { Work } from '../../types/work';
 
 // Props
@@ -15,7 +16,7 @@ export default function WorkCard({ work }: Props) {
     <div className="flex flex-col gap-4 pb-8">
       <a href={`/works/${work.id}`}>
         <div
-          className="corner-lg relative w-full overflow-hidden"
+          className="corner-lg relative isolate w-full overflow-hidden"
           style={{ paddingBottom: '56.25%' }}
         >
           {optimizedImage ? (
@@ -29,6 +30,12 @@ export default function WorkCard({ work }: Props) {
           ) : (
             <div className="corner-lg absolute top-0 left-0 flex h-full w-full items-center justify-center bg-gray-200">
               <p className="text-gray-500">画像がありません</p>
+            </div>
+          )}
+          {/* ピン留めアイコン */}
+          {work.data.isPinned && (
+            <div className="bg-primary absolute top-3 right-3 rounded-full p-1.5">
+              <IconPinFilled size={16} className="text-white" />
             </div>
           )}
         </div>

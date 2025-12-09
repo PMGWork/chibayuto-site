@@ -14,6 +14,8 @@ const works = defineCollection({
     tags: z.array(z.string()).optional().nullable(),
     createdAt: z.coerce.date(),
     thumbnail: z.string().optional().nullable(),
+    isPinned: z.boolean().optional().default(false),
+    isDraft: z.boolean().optional().default(false),
   }),
 });
 
