@@ -1,7 +1,7 @@
 ---
 slug: recommendmap
 thumbnail: "[[file-20251201201221004.png]]"
-createdAt: 2024-08-01
+createdAt: 2024-08-08
 tags:
   - プログラミング
 isPinned: false

@@ -1,12 +1,12 @@
 ---
 slug: pmgworksite
 thumbnail: "[[file-20251201210551053.png]]"
-createdAt: 2021-01-01
+createdAt: 2021-01-23
 tags:
   - プログラミング
   - デザイン
   - Web
-isPinned: false
+isPinned: true
 isDraft: false
 ---
 

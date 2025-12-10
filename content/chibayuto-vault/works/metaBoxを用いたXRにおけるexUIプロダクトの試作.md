@@ -1,18 +1,20 @@
 ---
 slug: exuixr
 thumbnail: "[[file-20251201211727344.jpeg]]"
-createdAt: 2025-03-01
+createdAt: 2025-03-03
 tags:
   - プログラミング
+  - 研究
 isPinned: true
 isDraft: false
 ---
 
-| Category   | Name                     |
-| ---------- | ------------------------ |
-| 学会         | INTERACTION2025          |
-| 共著者        | 傳田隼稀・三浦晴大                |
-| 使用ツール / 言語 | Apple Vision Pro / Swift |
+| Category   | Name                                                                                      |
+| ---------- | ----------------------------------------------------------------------------------------- |
+| 学会         | INTERACTION2025                                                                           |
+| 共著者        | 傳田隼稀・三浦晴大                                                                                 |
+| 使用ツール / 言語 | Apple Vision Pro / Swift                                                                  |
+| 論文         | [INTERACTION 2025](https://www.interaction-ipsj.org/proceedings/2025/data/bib/2B-54.html) |
 
 本研究では、ハンドジェスチャ・オブジェクトトラッキングといった、XR空間独自のインタラクションを用いたexUIを提案した。実際に、Apple Vision Pro と metaBox を用いたアプリケーション例を3つ制作した。本研究は、インタラクション2025 のデモ展示にて、プレミアム発表(19.6%)に採択された。
 

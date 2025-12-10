@@ -1,7 +1,7 @@
 ---
 slug: opening
 thumbnail: "[[file-20251201205115865.png]]"
-createdAt: 2024-06-01
+createdAt: 2024-07-22
 tags:
   - 映像
 isPinned: false
