@@ -1,0 +1,22 @@
+views:
+  - type: cards
+    name: View
+    filters:
+      and:
+        - file.path.contains("works/")
+        - '!file.path.contains("works/assets/")'
+        - '!file.path.contains("works/template")'
+        - and:
+            - file.fullname.contains("md")
+    groupBy:
+      property: isPinned
+      direction: DESC
+    order:
+      - file.name
+      - tags
+      - createdAt
+    sort:
+      - property: createdAt
+        direction: DESC
+    image: note.thumbnail
+    imageAspectRatio: 0.6
