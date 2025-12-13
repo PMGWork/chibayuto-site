@@ -2,7 +2,7 @@
 import { defineConfig } from 'astro/config';
 
 import mdx from '@astrojs/mdx';
-import react from '@astrojs/react';
+import svelte from '@astrojs/svelte';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
 
@@ -15,7 +15,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://chibayuto.com',
-  integrations: [mdx(), react(), sitemap(), icon()],
+  integrations: [mdx(), svelte(), sitemap(), icon()],
   markdown: {
     remarkPlugins: [remarkImages],
     rehypePlugins: [rehypeImageGrid, rehypeTableLinks],
