@@ -59,6 +59,8 @@
 
 @utility corner-lg {
   border-radius: var(--radius-lg);
+  /* Safari: overflow:hidden + border-radius + transform バグ対策 */
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 @supports (corner-shape: squircle) {
@@ -113,7 +115,7 @@
 }
 
 @utility corner-full {
-  border-radius: 100%;
+  border-radius: 1000px;
 }
 
 @supports (corner-shape: squircle) {
